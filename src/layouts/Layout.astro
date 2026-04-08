@@ -1,0 +1,203 @@
+---
+/* Gabarit HTML de base — utilisé par toutes les pages */
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Sefacile PC, spécialiste du montage PC Gaming et Workstation 3D sur-mesure en Isère. Devis gratuit, livraison en main propre.",
+} = Astro.props;
+
+const siteName    = "Sefacile PC";
+const siteUrl     = "https://sefacile-pc.fr";
+const fullTitle   = title === siteName ? title : title;
+const pageUrl     = new URL(Astro.url.pathname, siteUrl).toString();
+
+/* Données structurées Schema.org — LocalBusiness */
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sefacile PC",
+  "description": "Montage PC Gaming et Workstation 3D sur-mesure en Isère.",
+  "url": siteUrl,
+  "telephone": "+33600000000",
+  "email": "contact@sefacile-pc.fr",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Isère"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "Isère",
+    "addressCountry": "FR"
+  },
+  "priceRange": "€€",
+  "knowsAbout": ["PC Gaming", "Workstation 3D", "Montage PC", "Composants informatiques"]
+};
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Open Graph — partages sur réseaux sociaux -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content={siteName} />
+    <meta property="og:title"       content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url"         content={pageUrl} />
+    <meta property="og:locale"      content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:title"       content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- Polices : Inter via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Données structurées Schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+
+    <title>{fullTitle}</title>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* =====================
+     Variables CSS
+  ===================== */
+  :root {
+    --couleur-fond: #0a0a0a;
+    --couleur-surface: #111111;
+    --couleur-surface-2: #1a1a1a;
+    --couleur-rouge: #e63946;
+    --couleur-rouge-hover: #ff4d5a;
+    --couleur-texte: #ffffff;
+    --couleur-texte-secondaire: #a0a0a0;
+    --couleur-bordure: #2a2a2a;
+
+    --police: "Inter", system-ui, -apple-system, sans-serif;
+
+    --rayon: 6px;
+    --rayon-grand: 12px;
+
+    --ombre: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --ombre-rouge: 0 0 20px rgba(230, 57, 70, 0.25);
+
+    --largeur-max: 1200px;
+    --padding-section: 5rem 1.5rem;
+  }
+
+  /* =====================
+     Reset de base
+  ===================== */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--police);
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* =====================
+     Typographie globale
+  ===================== */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* =====================
+     Classe utilitaire : conteneur centré
+  ===================== */
+  .conteneur {
+    max-width: var(--largeur-max);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  /* =====================
+     Boutons réutilisables
+  ===================== */
+  .btn-principal {
+    display: inline-block;
+    background-color: var(--couleur-rouge);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: var(--rayon);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .btn-principal:hover {
+    background-color: var(--couleur-rouge-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondaire {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: var(--rayon);
+    border: 2px solid var(--couleur-bordure);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondaire:hover {
+    border-color: var(--couleur-rouge);
+    color: var(--couleur-rouge);
+  }
+</style>

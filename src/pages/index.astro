@@ -1,0 +1,610 @@
+---
+/* Page Accueil — Story 2.1 */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Montage PC Gaming Isère | Sefacile PC"
+  description="Sefacile PC, spécialiste du montage PC Gaming et Workstation 3D sur-mesure en Isère. Devis gratuit, livraison en main propre."
+>
+  <Header />
+
+  <main>
+
+    <!-- ================================
+         1. HERO
+    ================================= -->
+    <section class="hero" aria-label="Introduction">
+      <div class="conteneur hero__inner">
+
+        <div class="hero__contenu">
+          <!-- Badge localisation -->
+          <span class="hero__badge">
+            <span aria-hidden="true">📍</span> Isère (38) — Grenoble · Voiron · Bourgoin
+          </span>
+
+          <h1 class="hero__titre">
+            Votre PC sur-mesure<br />
+            <span class="accent">en Isère</span>
+          </h1>
+
+          <p class="hero__sous-titre">
+            PC Gaming haute performance ou Workstation 3D professionnelle —
+            je monte le PC parfait pour votre usage et votre budget,
+            avec des pièces sélectionnées et garanties.
+          </p>
+
+          <div class="hero__boutons">
+            <a href="/contact" class="btn-principal">
+              Devis gratuit
+            </a>
+            <a href="/realisations" class="btn-secondaire">
+              Voir les réalisations
+            </a>
+          </div>
+        </div>
+
+        <!-- Illustration décorative -->
+        <div class="hero__visuel" aria-hidden="true">
+          <div class="hero__pc">
+            <div class="pc__ecran">
+              <div class="pc__lueur"></div>
+              <span class="pc__logo">⚡</span>
+            </div>
+            <div class="pc__pied"></div>
+            <div class="pc__base"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Vague décorative en bas du hero -->
+      <div class="hero__vague" aria-hidden="true"></div>
+    </section>
+
+
+    <!-- ================================
+         2. SERVICES
+    ================================= -->
+    <section class="services" aria-labelledby="titreServices">
+      <div class="conteneur">
+
+        <div class="section__entete">
+          <h2 class="section__titre" id="titreServices">Ce que je propose</h2>
+          <p class="section__sous-titre">
+            Du gaming au rendu 3D professionnel, je m'adapte à votre projet.
+          </p>
+        </div>
+
+        <div class="services__grille">
+
+          <!-- Carte 1 : PC Gaming -->
+          <article class="carte">
+            <div class="carte__icone" aria-hidden="true">🎮</div>
+            <h3 class="carte__titre">PC Gaming</h3>
+            <p class="carte__texte">
+              Du 1080p fluide au 4K ultra — builds optimisés pour chaque budget,
+              de 800 € à 2 500 €. FPS maximum garanti.
+            </p>
+            <a href="/services#gaming" class="carte__lien">
+              En savoir plus <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Carte 2 : Workstation 3D -->
+          <article class="carte carte--mis-en-avant">
+            <div class="carte__badge-top">Populaire</div>
+            <div class="carte__icone" aria-hidden="true">🖥️</div>
+            <h3 class="carte__titre">Workstation 3D</h3>
+            <p class="carte__texte">
+              Blender, Cinema 4D, AutoCAD — stations de travail puissantes
+              pour les créatifs et professionnels 3D, de 1 500 € à 5 000 €+.
+            </p>
+            <a href="/services#workstation" class="carte__lien">
+              En savoir plus <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Carte 3 : Conseil & Devis -->
+          <article class="carte">
+            <div class="carte__icone" aria-hidden="true">💬</div>
+            <h3 class="carte__titre">Conseil & Devis</h3>
+            <p class="carte__texte">
+              Pas sûr de ce dont vous avez besoin ? Je vous guide gratuitement
+              pour choisir la configuration idéale selon votre usage.
+            </p>
+            <a href="/contact" class="carte__lien">
+              Demander un conseil <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         3. POINTS FORTS
+    ================================= -->
+    <section class="points-forts" aria-labelledby="titrePointsForts">
+      <div class="conteneur">
+
+        <div class="section__entete">
+          <h2 class="section__titre" id="titrePointsForts">Pourquoi me choisir ?</h2>
+        </div>
+
+        <ul class="points-forts__grille">
+
+          <li class="point">
+            <div class="point__icone" aria-hidden="true">📍</div>
+            <h3 class="point__titre">Basé en Isère</h3>
+            <p class="point__texte">
+              Intervention à domicile ou remise en main propre à Grenoble,
+              Voiron, Bourgoin-Jallieu et alentours.
+            </p>
+          </li>
+
+          <li class="point">
+            <div class="point__icone" aria-hidden="true">🛡️</div>
+            <h3 class="point__titre">Pièces garanties</h3>
+            <p class="point__texte">
+              Composants neufs issus de revendeurs agréés,
+              avec garantie constructeur complète.
+            </p>
+          </li>
+
+          <li class="point">
+            <div class="point__icone" aria-hidden="true">🔧</div>
+            <h3 class="point__titre">100 % sur-mesure</h3>
+            <p class="point__texte">
+              Chaque PC est assemblé selon vos besoins précis,
+              votre budget et vos logiciels.
+            </p>
+          </li>
+
+          <li class="point">
+            <div class="point__icone" aria-hidden="true">⚡</div>
+            <h3 class="point__titre">Passion & expertise</h3>
+            <p class="point__texte">
+              Auto-entrepreneur passionné par le hardware,
+              je suis au courant des dernières sorties et des meilleurs rapports qualité/prix.
+            </p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         4. CTA FINAL
+    ================================= -->
+    <section class="cta-final" aria-labelledby="titreCtaFinal">
+      <div class="conteneur cta-final__inner">
+        <div class="cta-final__texte">
+          <h2 class="cta-final__titre" id="titreCtaFinal">
+            Prêt à construire votre PC idéal&nbsp;?
+          </h2>
+          <p class="cta-final__sous-titre">
+            Décrivez-moi votre projet — je vous réponds sous 24 h avec un devis personnalisé, sans engagement.
+          </p>
+        </div>
+        <div class="cta-final__action">
+          <a href="/contact" class="btn-principal cta-final__btn">
+            Demander un devis gratuit
+          </a>
+          <!-- Appel direct sur mobile -->
+          <a href="tel:+33600000000" class="cta-final__tel">
+            <span aria-hidden="true">📞</span> Ou appelez directement
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+
+<style>
+  /* =====================
+     Accent rouge partagé
+  ===================== */
+  .accent {
+    color: var(--couleur-rouge);
+  }
+
+  /* =====================
+     En-têtes de section
+  ===================== */
+  .section__entete {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section__titre {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .section__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+
+
+  /* =====================
+     1. HERO
+  ===================== */
+  .hero {
+    position: relative;
+    padding: 4rem 0 6rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(230, 57, 70, 0.08) 0%, transparent 70%),
+      var(--couleur-fond);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* Badge */
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--couleur-rouge);
+    background-color: rgba(230, 57, 70, 0.1);
+    border: 1px solid rgba(230, 57, 70, 0.25);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* Titre principal */
+  .hero__titre {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    max-width: 52ch;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .hero__boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Illustration PC */
+  .hero__visuel {
+    flex-shrink: 0;
+  }
+
+  .hero__pc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pc__ecran {
+    width: 180px;
+    height: 120px;
+    background: var(--couleur-surface-2);
+    border: 2px solid var(--couleur-bordure);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--ombre-rouge);
+  }
+
+  .pc__lueur {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(230, 57, 70, 0.15), transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .pc__logo {
+    font-size: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pc__pied {
+    width: 40px;
+    height: 8px;
+    background: var(--couleur-surface-2);
+    border: 2px solid var(--couleur-bordure);
+    border-top: none;
+  }
+
+  .pc__base {
+    width: 100px;
+    height: 6px;
+    background: var(--couleur-surface-2);
+    border: 2px solid var(--couleur-bordure);
+    border-radius: 3px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 1; }
+  }
+
+  /* Vague décorative */
+  .hero__vague {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--couleur-surface);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+
+  /* =====================
+     2. SERVICES
+  ===================== */
+  .services {
+    background-color: var(--couleur-surface);
+    padding: var(--padding-section);
+  }
+
+  .services__grille {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Carte de service */
+  .carte {
+    position: relative;
+    background-color: var(--couleur-surface-2);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 2rem 1.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .carte:hover {
+    border-color: rgba(230, 57, 70, 0.4);
+    transform: translateY(-3px);
+  }
+
+  /* Carte mise en avant */
+  .carte--mis-en-avant {
+    border-color: rgba(230, 57, 70, 0.5);
+    box-shadow: var(--ombre-rouge);
+  }
+
+  .carte__badge-top {
+    position: absolute;
+    top: -12px;
+    left: 1.75rem;
+    background-color: var(--couleur-rouge);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .carte__icone {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .carte__titre {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .carte__texte {
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .carte__lien {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--couleur-rouge);
+    transition: gap 0.2s;
+  }
+
+  .carte__lien:hover {
+    gap: 0.6rem;
+  }
+
+
+  /* =====================
+     3. POINTS FORTS
+  ===================== */
+  .points-forts {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  .points-forts__grille {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .point {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+  }
+
+  .point__icone {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .point__titre {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .point__texte {
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+
+  /* =====================
+     4. CTA FINAL
+  ===================== */
+  .cta-final {
+    background:
+      linear-gradient(135deg, rgba(230, 57, 70, 0.12) 0%, transparent 60%),
+      var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+    border-bottom: 1px solid var(--couleur-bordure);
+    padding: var(--padding-section);
+  }
+
+  .cta-final__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .cta-final__titre {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-final__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 50ch;
+    line-height: 1.7;
+  }
+
+  .cta-final__action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cta-final__btn {
+    font-size: 1.05rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .cta-final__tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+    transition: color 0.2s;
+  }
+
+  .cta-final__tel:hover {
+    color: var(--couleur-texte);
+  }
+
+
+  /* =====================
+     Tablette (≥ 640px)
+  ===================== */
+  @media (min-width: 640px) {
+    .points-forts__grille {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 900px)
+  ===================== */
+  @media (min-width: 900px) {
+    .hero__inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero__contenu {
+      max-width: 55%;
+    }
+
+    .pc__ecran {
+      width: 260px;
+      height: 175px;
+    }
+
+    .pc__pied {
+      width: 60px;
+      height: 12px;
+    }
+
+    .pc__base {
+      width: 140px;
+    }
+
+    .services__grille {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .points-forts__grille {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cta-final__inner {
+      flex-direction: row;
+      text-align: left;
+      justify-content: space-between;
+    }
+
+    .cta-final__action {
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+  }
+</style>

@@ -1,0 +1,264 @@
+---
+/* En-tête du site : logo + navigation principale */
+
+/* Récupère la page active pour surligner le bon lien */
+const cheminActuel = Astro.url.pathname;
+
+const liens = [
+  { href: "/",            label: "Accueil" },
+  { href: "/services",    label: "Services" },
+  { href: "/realisations",label: "Réalisations" },
+  { href: "/tarifs",      label: "Tarifs" },
+  { href: "/contact",     label: "Contact" },
+];
+---
+
+<header class="header">
+  <div class="conteneur header__inner">
+
+    <!-- Logo -->
+    <a href="/" class="header__logo" aria-label="Sefacile PC — Accueil">
+      <span class="logo__icone" aria-hidden="true">⚡</span>
+      <span class="logo__texte">
+        Sefacile<span class="logo__accent">PC</span>
+      </span>
+    </a>
+
+    <!-- Bouton menu burger (mobile) -->
+    <button
+      class="header__burger"
+      id="btnBurger"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false"
+      aria-controls="menuNav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navigation principale -->
+    <nav class="header__nav" id="menuNav" role="navigation">
+      <ul class="nav__liste">
+        {liens.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                "nav__lien",
+                { "nav__lien--actif": cheminActuel === href }
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA visible dans le menu sur mobile -->
+      <a href="/contact" class="btn-principal header__cta">
+        Devis gratuit
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- Script : ouverture/fermeture du menu burger -->
+<script>
+  const btn = document.getElementById("btnBurger");
+  const nav = document.getElementById("menuNav");
+
+  btn?.addEventListener("click", () => {
+    const ouvert = nav?.classList.toggle("header__nav--ouvert");
+    btn.setAttribute("aria-expanded", String(ouvert));
+    btn.classList.toggle("header__burger--actif");
+  });
+
+  /* Ferme le menu quand on clique sur un lien (navigation SPA-like) */
+  nav?.querySelectorAll("a").forEach((lien) => {
+    lien.addEventListener("click", () => {
+      nav.classList.remove("header__nav--ouvert");
+      btn?.setAttribute("aria-expanded", "false");
+      btn?.classList.remove("header__burger--actif");
+    });
+  });
+</script>
+
+<style>
+  /* =====================
+     Header
+  ===================== */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--couleur-bordure);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  /* =====================
+     Logo
+  ===================== */
+  .header__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .logo__icone {
+    font-size: 1.4rem;
+  }
+
+  .logo__accent {
+    color: var(--couleur-rouge);
+  }
+
+  /* =====================
+     Burger (mobile)
+  ===================== */
+  .header__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .header__burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--couleur-texte);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+    transform-origin: center;
+  }
+
+  /* Animation burger → croix */
+  .header__burger--actif span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header__burger--actif span:nth-child(2) {
+    opacity: 0;
+  }
+  .header__burger--actif span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* =====================
+     Navigation
+  ===================== */
+  .header__nav {
+    /* Mobile : panneau caché par défaut */
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background-color: var(--couleur-surface);
+    border-bottom: 1px solid var(--couleur-bordure);
+    padding: 1rem 1.5rem 1.5rem;
+  }
+
+  .header__nav--ouvert {
+    display: flex;
+  }
+
+  .nav__liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav__lien {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--couleur-texte-secondaire);
+    border-bottom: 1px solid var(--couleur-bordure);
+    transition: color 0.2s;
+  }
+
+  .nav__lien:hover,
+  .nav__lien--actif {
+    color: var(--couleur-texte);
+  }
+
+  .nav__lien--actif {
+    color: var(--couleur-rouge);
+  }
+
+  .header__cta {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* =====================
+     Desktop (≥ 768px)
+  ===================== */
+  @media (min-width: 768px) {
+    .header__burger {
+      display: none;
+    }
+
+    .header__nav {
+      /* Réinitialise le style mobile */
+      display: flex !important;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+      position: static;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .nav__liste {
+      flex-direction: row;
+      gap: 0.25rem;
+    }
+
+    .nav__lien {
+      padding: 0.4rem 0.75rem;
+      border: none;
+      border-radius: var(--rayon);
+      font-size: 0.9rem;
+    }
+
+    .nav__lien:hover {
+      background-color: var(--couleur-surface-2);
+    }
+
+    .nav__lien--actif {
+      color: var(--couleur-rouge);
+      background-color: rgba(230, 57, 70, 0.08);
+    }
+
+    .header__cta {
+      margin-top: 0;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.25rem;
+    }
+  }
+</style>

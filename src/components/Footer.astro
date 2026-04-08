@@ -1,0 +1,205 @@
+---
+/* Pied de page du site */
+
+const annee = new Date().getFullYear();
+
+const liens = [
+  { href: "/",             label: "Accueil" },
+  { href: "/services",     label: "Services" },
+  { href: "/realisations", label: "Réalisations" },
+  { href: "/tarifs",       label: "Tarifs" },
+  { href: "/contact",      label: "Contact" },
+  { href: "/a-propos",     label: "À propos" },
+];
+---
+
+<footer class="footer">
+  <div class="conteneur footer__inner">
+
+    <!-- Colonne 1 : Identité -->
+    <div class="footer__bloc footer__identite">
+      <a href="/" class="footer__logo" aria-label="Sefacile PC — Accueil">
+        <span aria-hidden="true">⚡</span>
+        Sefacile<span class="footer__accent">PC</span>
+      </a>
+      <p class="footer__description">
+        Montage PC Gaming et Workstation 3D sur mesure en Isère.
+      </p>
+      <!-- Zone d'intervention -->
+      <p class="footer__zone">
+        <span class="footer__zone-icone" aria-hidden="true">📍</span>
+        Grenoble · Voiron · Bourgoin-Jallieu
+        <br />et alentours (Isère - 38)
+      </p>
+    </div>
+
+    <!-- Colonne 2 : Liens rapides -->
+    <nav class="footer__bloc footer__liens" aria-label="Liens rapides">
+      <h3 class="footer__titre">Liens rapides</h3>
+      <ul>
+        {liens.map(({ href, label }) => (
+          <li>
+            <a href={href} class="footer__lien">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Colonne 3 : Contact rapide -->
+    <div class="footer__bloc footer__contact">
+      <h3 class="footer__titre">Contact</h3>
+      <ul>
+        <li>
+          <!-- Bouton appel direct (important sur mobile) -->
+          <a href="tel:+33600000000" class="footer__lien footer__tel">
+            <span aria-hidden="true">📞</span> 06 00 00 00 00
+          </a>
+        </li>
+        <li>
+          <a href="mailto:contact@sefacile-pc.fr" class="footer__lien">
+            <span aria-hidden="true">✉️</span> contact@sefacile-pc.fr
+          </a>
+        </li>
+        <li>
+          <a href="/contact" class="btn-principal footer__btn-devis">
+            Demander un devis
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Barre du bas -->
+  <div class="footer__bas">
+    <div class="conteneur">
+      <p>© {annee} Sefacile PC — Auto-entrepreneur en Isère (38)</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* =====================
+     Footer
+  ===================== */
+  .footer {
+    background-color: var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+    margin-top: auto;
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* =====================
+     Logo
+  ===================== */
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__accent {
+    color: var(--couleur-rouge);
+  }
+
+  .footer__description {
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    max-width: 28ch;
+  }
+
+  /* Zone géographique */
+  .footer__zone {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.5;
+  }
+
+  .footer__zone-icone {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* =====================
+     Titres de colonne
+  ===================== */
+  .footer__titre {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 1rem;
+  }
+
+  /* =====================
+     Listes de liens
+  ===================== */
+  .footer__liens ul,
+  .footer__contact ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__lien {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+    transition: color 0.2s;
+  }
+
+  .footer__lien:hover {
+    color: var(--couleur-texte);
+  }
+
+  /* Numéro de téléphone mis en valeur */
+  .footer__tel {
+    font-weight: 600;
+    color: var(--couleur-texte);
+    font-size: 1rem;
+  }
+
+  .footer__btn-devis {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.5rem;
+  }
+
+  /* =====================
+     Barre basse
+  ===================== */
+  .footer__bas {
+    border-top: 1px solid var(--couleur-bordure);
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  /* =====================
+     Desktop (≥ 768px)
+  ===================== */
+  @media (min-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+</style>

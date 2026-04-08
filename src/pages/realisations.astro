@@ -1,0 +1,748 @@
+---
+/* Page Réalisations — Story 2.3 */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+/* Données des réalisations — à remplacer par de vraies photos */
+const realisations = [
+  {
+    id: 1,
+    titre: "PC Gaming RGB Entrée de gamme",
+    type: "gaming",
+    badge: "Gaming",
+    icone: "⚡",
+    couleur: "#1a0a0a",
+    budget: "~950 €",
+    description: "Build 1080p 144Hz, Ryzen 5 + RTX 4060. Câble management soigné, RGB synchronisé. Parfait pour débuter avec style.",
+  },
+  {
+    id: 2,
+    titre: "PC Gaming Compétitif 1440p",
+    type: "gaming",
+    badge: "Gaming",
+    icone: "⚡",
+    couleur: "#0a0a1a",
+    budget: "~1 500 €",
+    description: "Config 1440p 165Hz taillée pour le compétitif. Ryzen 7 + RTX 4070, latence minimale, watercooling 240mm.",
+  },
+  {
+    id: 3,
+    titre: "Setup Streaming Complet",
+    type: "gaming",
+    badge: "Gaming",
+    icone: "⚡",
+    couleur: "#0a1a0a",
+    budget: "~1 800 €",
+    description: "PC pensé pour streamer sans latence : i7-14700K + RTX 4070 Ti. Encode en NVENC, jeu en 1440p 144Hz simultané.",
+  },
+  {
+    id: 4,
+    titre: "PC Gaming Haut de gamme 4K",
+    type: "gaming",
+    badge: "Gaming",
+    icone: "⚡",
+    couleur: "#1a0505",
+    budget: "~2 400 €",
+    description: "4K 144Hz sans compromis. Ryzen 9 7950X + RTX 4090, 64 Go DDR5, NVMe 2 To. Le summum du gaming PC.",
+  },
+  {
+    id: 5,
+    titre: "Workstation Blender & Cinema 4D",
+    type: "workstation",
+    badge: "Workstation",
+    icone: "🖥️",
+    couleur: "#0a0f1a",
+    budget: "~2 200 €",
+    description: "Station 3D pour indépendant créatif. Ryzen 9 + RTX 4070, 64 Go DDR5. Temps de rendu divisés par 3 vs ancien setup.",
+  },
+  {
+    id: 6,
+    titre: "Station Montage Vidéo 4K",
+    type: "workstation",
+    badge: "Workstation",
+    icone: "🖥️",
+    couleur: "#0f0a1a",
+    budget: "~3 200 €",
+    description: "DaVinci Resolve 4K en temps réel. i9-14900K + RTX 4080, 128 Go DDR5, RAID SSD NVMe pour l'espace de travail.",
+  },
+  {
+    id: 7,
+    titre: "Workstation Architecture 3D",
+    type: "workstation",
+    badge: "Workstation",
+    icone: "🖥️",
+    couleur: "#0a1a15",
+    budget: "~3 800 €",
+    description: "AutoCAD, Revit, 3ds Max sans limitation. Xeon W + RTX A4000, RAM ECC 128 Go. Fiabilité professionnelle.",
+  },
+  {
+    id: 8,
+    titre: "Poste Ingénieur CAO",
+    type: "workstation",
+    badge: "Workstation",
+    icone: "🖥️",
+    couleur: "#1a150a",
+    budget: "~4 500 €",
+    description: "Simulation FEA & CFD sous SolidWorks. Threadripper 7960X + RTX 4000 Ada, 256 Go ECC. Pour l'ingénierie sérieuse.",
+  },
+];
+---
+
+<Layout
+  title="Réalisations Montage PC Isère | Sefacile PC"
+  description="Explorez mes réalisations de PC Gaming et Workstation 3D montés en Isère. Chaque build est unique et sur-mesure."
+>
+  <Header />
+
+  <main>
+
+    <!-- ================================
+         1. HERO PAGE
+    ================================= -->
+    <section class="page-hero">
+      <div class="conteneur">
+        <h1 class="page-hero__titre">Mes réalisations</h1>
+        <p class="page-hero__sous-titre">
+          Chaque build est unique, conçu selon vos besoins
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         2. FILTRES + 3. GALERIE + 5. MESSAGE VIDE
+    ================================= -->
+    <section class="galerie-section" aria-labelledby="titreGalerie">
+      <div class="conteneur">
+
+        <h2 class="sr-only" id="titreGalerie">Galerie des réalisations</h2>
+
+        <!-- Filtres -->
+        <div class="filtres" role="group" aria-label="Filtrer par type de PC">
+          <button class="filtre filtre--actif" data-filtre="tous">Tous</button>
+          <button class="filtre" data-filtre="gaming">🎮 Gaming</button>
+          <button class="filtre" data-filtre="workstation">🖥️ Workstation</button>
+        </div>
+
+        <!-- Message aucun résultat -->
+        <p class="galerie__vide" id="messageVide" hidden aria-live="polite">
+          Aucune réalisation dans cette catégorie pour le moment.
+        </p>
+
+        <!-- Galerie -->
+        <ul class="galerie" id="galerie">
+          {realisations.map((r) => (
+            <li
+              class="galerie__item"
+              data-type={r.type}
+            >
+              <button
+                class="carte-real"
+                aria-label={`Voir la réalisation : ${r.titre}`}
+                data-id={r.id}
+              >
+                <!-- Image placeholder -->
+                <div
+                  class="carte-real__image"
+                  style={`background-color: ${r.couleur};`}
+                  aria-hidden="true"
+                >
+                  <span class="carte-real__icone">{r.icone}</span>
+                  <!-- Overlay hover -->
+                  <div class="carte-real__overlay">
+                    <span>Voir le détail</span>
+                  </div>
+                </div>
+
+                <!-- Infos -->
+                <div class="carte-real__infos">
+                  <span class:list={[
+                    "carte-real__badge",
+                    r.type === "gaming" ? "carte-real__badge--gaming" : "carte-real__badge--workstation"
+                  ]}>
+                    {r.badge}
+                  </span>
+                  <h3 class="carte-real__titre">{r.titre}</h3>
+                  <p class="carte-real__budget">{r.budget}</p>
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ================================
+         6. CTA FINAL
+    ================================= -->
+    <section class="cta-final" aria-labelledby="titreCtaReal">
+      <div class="conteneur cta-final__inner">
+        <div>
+          <h2 class="cta-final__titre" id="titreCtaReal">
+            Votre projet sera ma prochaine réalisation
+          </h2>
+          <p class="cta-final__sous-titre">
+            Discutons de votre build idéal — devis gratuit et personnalisé sous 24 h.
+          </p>
+        </div>
+        <a href="/contact" class="btn-principal cta-final__btn">
+          Démarrer mon projet
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================================
+       4. LIGHTBOX
+  ================================= -->
+  <div
+    class="lightbox"
+    id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Détail de la réalisation"
+    hidden
+  >
+    <div class="lightbox__fond" id="lightboxFond"></div>
+    <div class="lightbox__boite">
+      <button class="lightbox__fermer" id="lightboxFermer" aria-label="Fermer">✕</button>
+      <div class="lightbox__image" id="lightboxImage" aria-hidden="true">
+        <span class="lightbox__icone" id="lightboxIcone"></span>
+      </div>
+      <div class="lightbox__contenu">
+        <div class="lightbox__meta">
+          <span class="lightbox__badge" id="lightboxBadge"></span>
+          <span class="lightbox__budget" id="lightboxBudget"></span>
+        </div>
+        <h2 class="lightbox__titre" id="lightboxTitre"></h2>
+        <p class="lightbox__desc" id="lightboxDesc"></p>
+        <a href="/contact" class="btn-principal lightbox__cta">
+          Un projet similaire ? Devis gratuit
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+
+<!-- Script : filtres + lightbox -->
+<script define:vars={{ realisations }}>
+
+  /* ─── FILTRES ───────────────────────────────── */
+  const boutonsFiltres = document.querySelectorAll(".filtre");
+  const items = document.querySelectorAll(".galerie__item");
+  const messageVide = document.getElementById("messageVide");
+
+  boutonsFiltres.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filtre = btn.getAttribute("data-filtre");
+
+      /* Met à jour le bouton actif */
+      boutonsFiltres.forEach((b) => b.classList.remove("filtre--actif"));
+      btn.classList.add("filtre--actif");
+
+      /* Affiche/masque les items */
+      let nbVisible = 0;
+      items.forEach((item) => {
+        const type = item.getAttribute("data-type");
+        const visible = filtre === "tous" || type === filtre;
+        item.hidden = !visible;
+        if (visible) nbVisible++;
+      });
+
+      /* Message si aucun résultat */
+      if (messageVide) messageVide.hidden = nbVisible > 0;
+    });
+  });
+
+
+  /* ─── LIGHTBOX ──────────────────────────────── */
+  const lightbox       = document.getElementById("lightbox");
+  const lightboxFond   = document.getElementById("lightboxFond");
+  const lightboxFermer = document.getElementById("lightboxFermer");
+  const lbIcone        = document.getElementById("lightboxIcone");
+  const lbImage        = document.getElementById("lightboxImage");
+  const lbBadge        = document.getElementById("lightboxBadge");
+  const lbBudget       = document.getElementById("lightboxBudget");
+  const lbTitre        = document.getElementById("lightboxTitre");
+  const lbDesc         = document.getElementById("lightboxDesc");
+
+  /* Stocke le dernier élément focalisé pour restaurer le focus à la fermeture */
+  let dernierFocus = null;
+
+  function ouvrirLightbox(id) {
+    const r = realisations.find((x) => x.id === id);
+    if (!r || !lightbox) return;
+
+    /* Remplit le contenu */
+    if (lbIcone)  lbIcone.textContent  = r.icone;
+    if (lbImage)  lbImage.style.backgroundColor = r.couleur;
+    if (lbBadge)  lbBadge.textContent  = r.badge;
+    if (lbBudget) lbBudget.textContent = r.budget;
+    if (lbTitre)  lbTitre.textContent  = r.titre;
+    if (lbDesc)   lbDesc.textContent   = r.description;
+
+    /* Badge couleur */
+    if (lbBadge) {
+      lbBadge.className = "lightbox__badge " +
+        (r.type === "gaming" ? "lightbox__badge--gaming" : "lightbox__badge--workstation");
+    }
+
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    dernierFocus = document.activeElement;
+    lightboxFermer?.focus();
+  }
+
+  function fermerLightbox() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = "";
+    if (dernierFocus) dernierFocus.focus();
+  }
+
+  /* Ouvrir au clic sur une carte */
+  document.querySelectorAll(".carte-real").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = parseInt(btn.getAttribute("data-id") || "0", 10);
+      ouvrirLightbox(id);
+    });
+  });
+
+  /* Fermer */
+  lightboxFermer?.addEventListener("click", fermerLightbox);
+  lightboxFond?.addEventListener("click", fermerLightbox);
+
+  /* Fermer avec Échap */
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox && !lightbox.hidden) fermerLightbox();
+  });
+
+</script>
+
+
+<style>
+  /* =====================
+     Accessibilité : masquer visuellement mais garder pour les SR
+  ===================== */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* =====================
+     Hero page
+  ===================== */
+  .page-hero {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--couleur-bordure);
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
+                var(--couleur-fond);
+  }
+
+  .page-hero__titre {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+  }
+
+  /* =====================
+     Section galerie
+  ===================== */
+  .galerie-section {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  /* =====================
+     Filtres
+  ===================== */
+  .filtres {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .filtre {
+    background: none;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: 999px;
+    color: var(--couleur-texte-secondaire);
+    font-family: var(--police);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.45rem 1.1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+  }
+
+  .filtre:hover {
+    border-color: var(--couleur-rouge);
+    color: var(--couleur-texte);
+  }
+
+  .filtre--actif {
+    border-color: var(--couleur-rouge);
+    color: var(--couleur-rouge);
+    background-color: rgba(230,57,70,0.08);
+    font-weight: 600;
+  }
+
+  /* =====================
+     Message vide
+  ===================== */
+  .galerie__vide {
+    text-align: center;
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.95rem;
+    padding: 3rem 0;
+  }
+
+  /* =====================
+     Galerie
+  ===================== */
+  .galerie {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* =====================
+     Carte réalisation
+  ===================== */
+  .carte-real {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: none;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .carte-real:hover {
+    border-color: rgba(230,57,70,0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+
+  /* Zone image placeholder */
+  .carte-real__image {
+    position: relative;
+    height: 200px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .carte-real__icone {
+    font-size: 3.5rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s;
+  }
+
+  .carte-real:hover .carte-real__icone {
+    transform: scale(1.15);
+  }
+
+  /* Overlay rouge au hover */
+  .carte-real__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(230,57,70,0.7);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .carte-real__overlay span {
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .carte-real:hover .carte-real__overlay {
+    opacity: 1;
+  }
+
+  /* Infos sous l'image */
+  .carte-real__infos {
+    background-color: var(--couleur-surface);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .carte-real__badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  .carte-real__badge--gaming {
+    background-color: rgba(230,57,70,0.15);
+    color: var(--couleur-rouge);
+    border: 1px solid rgba(230,57,70,0.3);
+  }
+
+  .carte-real__badge--workstation {
+    background-color: rgba(59,130,246,0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59,130,246,0.25);
+  }
+
+  .carte-real__titre {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--couleur-texte);
+    line-height: 1.3;
+  }
+
+  .carte-real__budget {
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+
+  /* =====================
+     CTA final
+  ===================== */
+  .cta-final {
+    padding: var(--padding-section);
+    background: linear-gradient(135deg, rgba(230,57,70,0.1) 0%, transparent 60%),
+                var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+  }
+
+  .cta-final__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .cta-final__titre {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-final__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .cta-final__btn {
+    font-size: 1rem;
+    padding: 0.9rem 2.25rem;
+    flex-shrink: 0;
+  }
+
+
+  /* =====================
+     LIGHTBOX
+  ===================== */
+
+  /* Empêche display:grid d'écraser l'attribut hidden */
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+
+  /* Fond semi-transparent */
+  .lightbox__fond {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Boîte de dialogue */
+  .lightbox__boite {
+    position: relative;
+    z-index: 1;
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+
+  /* Bouton fermer */
+  .lightbox__fermer {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background-color 0.2s;
+  }
+
+  .lightbox__fermer:hover {
+    background-color: var(--couleur-rouge);
+  }
+
+  /* Zone image */
+  .lightbox__image {
+    height: 220px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .lightbox__icone {
+    font-size: 5rem;
+  }
+
+  /* Contenu texte */
+  .lightbox__contenu {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .lightbox__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .lightbox__badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  .lightbox__badge--gaming {
+    background-color: rgba(230,57,70,0.15);
+    color: var(--couleur-rouge);
+    border: 1px solid rgba(230,57,70,0.3);
+  }
+
+  .lightbox__badge--workstation {
+    background-color: rgba(59,130,246,0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59,130,246,0.25);
+  }
+
+  .lightbox__budget {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--couleur-rouge);
+  }
+
+  .lightbox__titre {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .lightbox__desc {
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.7;
+  }
+
+  .lightbox__cta {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+  }
+
+
+  /* =====================
+     Tablette (≥ 500px)
+  ===================== */
+  @media (min-width: 500px) {
+    .galerie {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 900px)
+  ===================== */
+  @media (min-width: 900px) {
+    .galerie {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cta-final__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lightbox__boite {
+      flex-direction: row;
+      max-width: 820px;
+    }
+
+    .lightbox__image {
+      width: 280px;
+      height: auto;
+      flex-shrink: 0;
+    }
+  }
+</style>

@@ -1,0 +1,651 @@
+---
+/* Page À propos — Story 2.6 */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="À propos | Sefacile PC — Montage PC Isère"
+  description="Découvrez Sefacile PC, auto-entrepreneur passionné spécialisé dans le montage PC Gaming et Workstation 3D en Isère."
+>
+  <Header />
+
+  <main>
+
+    <!-- ================================
+         1. HERO PAGE
+    ================================= -->
+    <section class="page-hero">
+      <div class="conteneur">
+        <h1 class="page-hero__titre">À propos</h1>
+        <p class="page-hero__sous-titre">
+          Un passionné d'informatique à votre service — pas une entreprise froide, une vraie personne.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         2. MON HISTOIRE + 6. PHOTO
+    ================================= -->
+    <section class="histoire" aria-labelledby="titreHistoire">
+      <div class="conteneur histoire__inner">
+
+        <!-- Photo -->
+        <div class="histoire__photo-wrap">
+          <!-- Ajouter photo -->
+          <div class="photo-placeholder" aria-label="Photo de profil — à venir">
+            <span class="photo-placeholder__icone" aria-hidden="true">👤</span>
+            <p class="photo-placeholder__texte">Votre photo ici</p>
+          </div>
+          <!-- Badge localisation -->
+          <div class="histoire__badge">
+            <span aria-hidden="true">📍</span> Isère (38)
+          </div>
+        </div>
+
+        <!-- Texte -->
+        <div class="histoire__texte">
+          <h2 class="histoire__titre" id="titreHistoire">Mon histoire</h2>
+
+          <!-- À personnaliser -->
+          <p>
+            Passionné d'informatique depuis mon plus jeune âge,
+            j'ai commencé à monter mes premiers PC à 15 ans.
+            Ce qui a débuté comme une passion est devenu mon métier.
+            Aujourd'hui, en tant qu'auto-entrepreneur basé en Isère,
+            je mets cette expertise au service des gamers et
+            des professionnels qui veulent une machine taillée
+            exactement pour leurs besoins.
+          </p>
+          <!-- /À personnaliser -->
+
+          <p>
+            Ce que j'aime dans ce travail ? Le moment où je remets un PC
+            à son propriétaire et qu'il démarre pour la première fois.
+            Voir la réaction de quelqu'un face à une machine conçue rien que pour lui —
+            c'est ça qui me motive chaque jour.
+          </p>
+
+          <a href="/contact" class="btn-principal histoire__cta">
+            Me contacter
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================
+         5. CHIFFRES
+    ================================= -->
+    <section class="chiffres" aria-labelledby="titreChiffres">
+      <div class="conteneur">
+        <h2 class="sr-only" id="titreChiffres">En chiffres</h2>
+        <ul class="chiffres__grille">
+
+          <li class="chiffre">
+            <!-- À mettre à jour avec les vrais chiffres -->
+            <span class="chiffre__valeur">XX</span>
+            <span class="chiffre__label">PC montés</span>
+          </li>
+
+          <li class="chiffre">
+            <span class="chiffre__valeur">XX</span>
+            <span class="chiffre__label">Clients satisfaits</span>
+          </li>
+
+          <li class="chiffre">
+            <span class="chiffre__valeur">X</span>
+            <span class="chiffre__label">Ans d'expérience</span>
+          </li>
+
+          <li class="chiffre">
+            <span class="chiffre__valeur">38</span>
+            <span class="chiffre__label">Isère & alentours</span>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         3. MES VALEURS
+    ================================= -->
+    <section class="valeurs" aria-labelledby="titreValeurs">
+      <div class="conteneur">
+
+        <div class="section__entete">
+          <h2 class="section__titre" id="titreValeurs">Mes valeurs</h2>
+          <p class="section__sous-titre">Ce qui guide mon travail au quotidien</p>
+        </div>
+
+        <ul class="valeurs__grille">
+
+          <li class="valeur">
+            <div class="valeur__icone" aria-hidden="true">❤️</div>
+            <h3 class="valeur__titre">Passion</h3>
+            <p class="valeur__texte">
+              Chaque build est réalisé avec soin, comme si c'était
+              pour moi. Je ne bâcle pas — le câble management,
+              les tests, les finitions, tout compte.
+            </p>
+          </li>
+
+          <li class="valeur">
+            <div class="valeur__icone" aria-hidden="true">🤝</div>
+            <h3 class="valeur__titre">Transparence</h3>
+            <p class="valeur__texte">
+              Devis détaillé avant tout achat, aucune surprise
+              sur la facture finale. Vous savez exactement
+              ce pour quoi vous payez, pièce par pièce.
+            </p>
+          </li>
+
+          <li class="valeur">
+            <div class="valeur__icone" aria-hidden="true">📍</div>
+            <h3 class="valeur__titre">Proximité</h3>
+            <p class="valeur__texte">
+              Basé en Isère, disponible et réactif. Vous avez
+              une question après la livraison ? Je réponds —
+              pas un service client anonyme, moi directement.
+            </p>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ================================
+         4. MON EXPERTISE
+    ================================= -->
+    <section class="expertise" aria-labelledby="titreExpertise">
+      <div class="conteneur expertise__inner">
+
+        <div class="expertise__entete">
+          <h2 class="section__titre" id="titreExpertise">Mon expertise</h2>
+          <p class="section__sous-titre">
+            Les domaines dans lesquels je me suis spécialisé au fil des années
+          </p>
+        </div>
+
+        <ul class="expertise__liste">
+
+          <li class="expertise__item">
+            <span class="expertise__icone" aria-hidden="true">⚡</span>
+            <div>
+              <h3 class="expertise__titre">Montage PC Gaming & Workstation</h3>
+              <p class="expertise__detail">
+                Assemblage complet, câble management soigné, tests sur 24 h avant livraison.
+              </p>
+            </div>
+          </li>
+
+          <li class="expertise__item">
+            <span class="expertise__icone" aria-hidden="true">🔍</span>
+            <div>
+              <h3 class="expertise__titre">Sélection et compatibilité des composants</h3>
+              <p class="expertise__detail">
+                Je connais les pièges de compatibilité et je choisis les meilleures
+                options pour votre budget et votre usage.
+              </p>
+            </div>
+          </li>
+
+          <li class="expertise__item">
+            <span class="expertise__icone" aria-hidden="true">📈</span>
+            <div>
+              <h3 class="expertise__titre">Optimisation et overclocking</h3>
+              <p class="expertise__detail">
+                Tirer le maximum de chaque composant en toute sécurité,
+                avec les bons profils XMP/EXPO et les bons voltages.
+              </p>
+            </div>
+          </li>
+
+          <li class="expertise__item">
+            <span class="expertise__icone" aria-hidden="true">🧪</span>
+            <div>
+              <h3 class="expertise__titre">Tests de stabilité et benchmark</h3>
+              <p class="expertise__detail">
+                Cinebench, 3DMark, Prime95, FurMark — votre PC est validé
+                avant de vous être remis.
+              </p>
+            </div>
+          </li>
+
+          <li class="expertise__item">
+            <span class="expertise__icone" aria-hidden="true">💬</span>
+            <div>
+              <h3 class="expertise__titre">Conseil personnalisé selon le budget</h3>
+              <p class="expertise__detail">
+                Pas de vente forcée. Je vous guide vers la configuration
+                qui correspond à vos vrais besoins, pas aux marges les plus élevées.
+              </p>
+            </div>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ================================
+         7. CTA FINAL
+    ================================= -->
+    <section class="cta-final" aria-labelledby="titreCtaApropos">
+      <div class="conteneur cta-final__inner">
+        <div>
+          <h2 class="cta-final__titre" id="titreCtaApropos">Travaillons ensemble</h2>
+          <p class="cta-final__sous-titre">
+            Vous avez un projet de PC ? Parlons-en —
+            je vous réponds sous 24 h avec un devis personnalisé et sans engagement.
+          </p>
+        </div>
+        <a href="/contact" class="btn-principal cta-final__btn">
+          Démarrer la conversation
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+
+<style>
+  /* =====================
+     Accessibilité
+  ===================== */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* =====================
+     Hero page
+  ===================== */
+  .page-hero {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--couleur-bordure);
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
+                var(--couleur-fond);
+  }
+
+  .page-hero__titre {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     Section histoire
+  ===================== */
+  .histoire {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  .histoire__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  /* Photo placeholder */
+  .histoire__photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .photo-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--couleur-surface-2);
+    border: 3px solid var(--couleur-bordure);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .photo-placeholder__icone {
+    font-size: 3.5rem;
+    line-height: 1;
+  }
+
+  .photo-placeholder__texte {
+    font-size: 0.75rem;
+    color: var(--couleur-texte-secondaire);
+    font-style: italic;
+  }
+
+  /* Badge localisation sur la photo */
+  .histoire__badge {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--couleur-rouge);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* Texte */
+  .histoire__texte {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .histoire__titre {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .histoire__texte p {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .histoire__cta {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+
+  /* =====================
+     Chiffres
+  ===================== */
+  .chiffres {
+    background-color: var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+    border-bottom: 1px solid var(--couleur-bordure);
+    padding: 2.5rem 0;
+  }
+
+  .chiffres__grille {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background-color: var(--couleur-bordure);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+  }
+
+  .chiffre {
+    background-color: var(--couleur-surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.75rem 1rem;
+    text-align: center;
+    gap: 0.25rem;
+  }
+
+  .chiffre__valeur {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--couleur-rouge);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .chiffre__label {
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    font-weight: 500;
+  }
+
+
+  /* =====================
+     En-têtes de section
+  ===================== */
+  .section__entete {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section__titre {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .section__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.95rem;
+  }
+
+
+  /* =====================
+     Valeurs
+  ===================== */
+  .valeurs {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  .valeurs__grille {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .valeur {
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .valeur:hover {
+    border-color: rgba(230,57,70,0.35);
+  }
+
+  .valeur__icone {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .valeur__titre {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .valeur__texte {
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.7;
+  }
+
+
+  /* =====================
+     Expertise
+  ===================== */
+  .expertise {
+    padding: var(--padding-section);
+    background-color: var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+  }
+
+  .expertise__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .expertise__entete {
+    text-align: center;
+  }
+
+  .expertise__liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+  }
+
+  .expertise__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--couleur-bordure);
+    background-color: var(--couleur-surface-2);
+    transition: background-color 0.15s;
+  }
+
+  .expertise__item:last-child {
+    border-bottom: none;
+  }
+
+  .expertise__item:hover {
+    background-color: rgba(230,57,70,0.04);
+  }
+
+  .expertise__icone {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .expertise__titre {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .expertise__detail {
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.6;
+  }
+
+
+  /* =====================
+     CTA final
+  ===================== */
+  .cta-final {
+    padding: var(--padding-section);
+    background: linear-gradient(135deg, rgba(230,57,70,0.1) 0%, transparent 60%),
+                var(--couleur-fond);
+    border-top: 1px solid var(--couleur-bordure);
+  }
+
+  .cta-final__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .cta-final__titre {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-final__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .cta-final__btn {
+    font-size: 1rem;
+    padding: 0.9rem 2.25rem;
+    flex-shrink: 0;
+  }
+
+
+  /* =====================
+     Tablette (≥ 640px)
+  ===================== */
+  @media (min-width: 640px) {
+    .valeurs__grille {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .chiffres__grille {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 900px)
+  ===================== */
+  @media (min-width: 900px) {
+    .histoire__inner {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 4rem;
+    }
+
+    .histoire__photo-wrap {
+      align-self: flex-start;
+    }
+
+    .photo-placeholder {
+      width: 240px;
+      height: 240px;
+    }
+
+    .expertise__inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .expertise__entete {
+      text-align: left;
+      position: sticky;
+      top: 5rem;
+    }
+
+    .cta-final__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

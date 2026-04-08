@@ -1,0 +1,593 @@
+---
+/* Page Contact — Story 2.5 */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Contact | Sefacile PC — Montage PC Isère"
+  description="Contactez Sefacile PC pour votre projet de montage PC en Isère. Réponse sous 24h, devis gratuit et sans engagement."
+>
+  <Header />
+
+  <main>
+
+    <!-- En-tête de page -->
+    <section class="page-hero">
+      <div class="conteneur">
+        <h1 class="page-hero__titre">Parlons de votre projet</h1>
+        <p class="page-hero__sous-titre">
+          Décrivez-moi votre besoin — je vous réponds sous 24 h avec un devis personnalisé, sans engagement.
+        </p>
+      </div>
+    </section>
+
+    <!-- Corps principal : formulaire + infos -->
+    <section class="contact-section">
+      <div class="conteneur contact__grille">
+
+        <!-- ================================
+             FORMULAIRE NETLIFY
+        ================================= -->
+        <div class="contact__formulaire-bloc">
+
+          <!-- Message de succès (caché par défaut) -->
+          <div class="succes" id="messageSucces" role="alert" aria-live="polite" hidden>
+            <span class="succes__icone" aria-hidden="true">✅</span>
+            <div>
+              <strong>Message envoyé !</strong>
+              <p>Merci pour votre demande. Je vous réponds dans les 24 heures.</p>
+            </div>
+          </div>
+
+          <form
+            id="formulaireContact"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            class="formulaire"
+            novalidate
+          >
+            <!-- Champ anti-bot (caché) -->
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+            <!-- Ligne 1 : Prénom + Nom -->
+            <div class="formulaire__ligne">
+              <div class="champ">
+                <label class="champ__label" for="prenom">Prénom <span class="champ__requis" aria-hidden="true">*</span></label>
+                <input
+                  class="champ__input"
+                  type="text"
+                  id="prenom"
+                  name="prenom"
+                  placeholder="Jean"
+                  required
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="nom">Nom <span class="champ__requis" aria-hidden="true">*</span></label>
+                <input
+                  class="champ__input"
+                  type="text"
+                  id="nom"
+                  name="nom"
+                  placeholder="Dupont"
+                  required
+                  autocomplete="family-name"
+                />
+              </div>
+            </div>
+
+            <!-- Ligne 2 : Email + Téléphone -->
+            <div class="formulaire__ligne">
+              <div class="champ">
+                <label class="champ__label" for="email">Email <span class="champ__requis" aria-hidden="true">*</span></label>
+                <input
+                  class="champ__input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="jean@exemple.fr"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="telephone">Téléphone</label>
+                <input
+                  class="champ__input"
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  placeholder="06 00 00 00 00"
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+
+            <!-- Ligne 3 : Type de projet + Budget -->
+            <div class="formulaire__ligne">
+              <div class="champ">
+                <label class="champ__label" for="typeProjet">Type de projet <span class="champ__requis" aria-hidden="true">*</span></label>
+                <div class="champ__select-wrap">
+                  <select class="champ__input champ__select" id="typeProjet" name="type_projet" required>
+                    <option value="" disabled selected>Choisir…</option>
+                    <option value="gaming">PC Gaming</option>
+                    <option value="workstation">Workstation 3D</option>
+                    <option value="conseil">Conseil</option>
+                    <option value="upgrade">Upgrade / Amélioration</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                  <span class="champ__select-icone" aria-hidden="true">▾</span>
+                </div>
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="budget">Budget approximatif</label>
+                <div class="champ__select-wrap">
+                  <select class="champ__input champ__select" id="budget" name="budget">
+                    <option value="" disabled selected>Choisir…</option>
+                    <option value="moins-800">Moins de 800 €</option>
+                    <option value="800-1500">800 € – 1 500 €</option>
+                    <option value="1500-3000">1 500 € – 3 000 €</option>
+                    <option value="plus-3000">Plus de 3 000 €</option>
+                  </select>
+                  <span class="champ__select-icone" aria-hidden="true">▾</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Message libre -->
+            <div class="champ">
+              <label class="champ__label" for="message">
+                Votre message <span class="champ__requis" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                class="champ__input champ__textarea"
+                id="message"
+                name="message"
+                placeholder="Décrivez votre projet, vos usages principaux, vos jeux favoris ou logiciels utilisés…"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Bouton envoi -->
+            <button type="submit" class="btn-principal formulaire__btn">
+              Envoyer ma demande
+            </button>
+
+            <p class="formulaire__mention">
+              * Champs obligatoires. Vos données ne sont jamais partagées.
+            </p>
+          </form>
+        </div>
+
+
+        <!-- ================================
+             INFOS DE CONTACT
+        ================================= -->
+        <aside class="contact__infos" aria-label="Informations de contact">
+
+          <!-- Appel direct -->
+          <div class="info-bloc info-bloc--tel">
+            <p class="info-bloc__label">Appel direct</p>
+            <a href="tel:+33600000000" class="info-tel">
+              <span class="info-tel__icone" aria-hidden="true">📞</span>
+              <span class="info-tel__numero">06 00 00 00 00</span>
+            </a>
+            <p class="info-bloc__note">Du lundi au samedi, 9h – 19h</p>
+          </div>
+
+          <!-- Zone d'intervention -->
+          <div class="info-bloc">
+            <p class="info-bloc__label">Zone d'intervention</p>
+            <div class="info-zone">
+              <span class="info-zone__icone" aria-hidden="true">📍</span>
+              <div>
+                <p class="info-zone__titre">Isère (38)</p>
+                <ul class="info-zone__liste">
+                  <li>Grenoble et agglomération</li>
+                  <li>Voiron et alentours</li>
+                  <li>Bourgoin-Jallieu</li>
+                  <li>Sud Isère</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Délai de réponse -->
+          <div class="info-bloc">
+            <p class="info-bloc__label">Délai de réponse</p>
+            <div class="info-delai">
+              <span class="info-delai__icone" aria-hidden="true">⚡</span>
+              <div>
+                <p class="info-delai__valeur">Sous 24 h</p>
+                <p class="info-delai__note">Devis gratuit et sans engagement</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="info-bloc">
+            <p class="info-bloc__label">Email</p>
+            <a href="mailto:contact@sefacile-pc.fr" class="info-email">
+              contact@sefacile-pc.fr
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+
+<!-- Script : gestion de la soumission du formulaire -->
+<script>
+  const form = document.getElementById("formulaireContact") as HTMLFormElement | null;
+  const messageSucces = document.getElementById("messageSucces");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    /* Encode les données au format URL (attendu par Netlify Forms) */
+    const data = new FormData(form);
+    const encoded = new URLSearchParams(data as unknown as Record<string, string>).toString();
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encoded,
+      });
+
+      if (res.ok) {
+        /* Affiche le message de succès, cache le formulaire */
+        form.hidden = true;
+        if (messageSucces) messageSucces.hidden = false;
+        /* Scroll vers le message */
+        messageSucces?.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        alert("Une erreur s'est produite. Merci de réessayer ou de m'appeler directement.");
+      }
+    } catch {
+      alert("Impossible d'envoyer le formulaire. Vérifiez votre connexion et réessayez.");
+    }
+  });
+</script>
+
+
+<style>
+  /* =====================
+     En-tête de page
+  ===================== */
+  .page-hero {
+    padding: 3.5rem 0 3rem;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(230, 57, 70, 0.07) 0%, transparent 70%),
+                var(--couleur-fond);
+    text-align: center;
+    border-bottom: 1px solid var(--couleur-bordure);
+  }
+
+  .page-hero__titre {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     Section principale
+  ===================== */
+  .contact-section {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  /* Grille : formulaire + infos */
+  .contact__grille {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* =====================
+     Message de succès
+  ===================== */
+  .succes {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: var(--rayon-grand);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .succes__icone {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .succes strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+    color: #4ade80;
+  }
+
+  .succes p {
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  /* =====================
+     Formulaire
+  ===================== */
+  .formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Ligne de deux champs côte à côte */
+  .formulaire__ligne {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Champ individuel */
+  .champ {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .champ__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--couleur-texte);
+  }
+
+  .champ__requis {
+    color: var(--couleur-rouge);
+  }
+
+  /* Input, select, textarea partagent le même style */
+  .champ__input {
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    color: var(--couleur-texte);
+    font-family: var(--police);
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .champ__input::placeholder {
+    color: #555;
+  }
+
+  .champ__input:focus {
+    border-color: var(--couleur-rouge);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+  }
+
+  /* Select : flèche personnalisée */
+  .champ__select-wrap {
+    position: relative;
+  }
+
+  .champ__select {
+    cursor: pointer;
+    padding-right: 2.5rem;
+  }
+
+  /* Désactive la flèche native sur les navigateurs Webkit */
+  .champ__select::-ms-expand { display: none; }
+
+  .champ__select-icone {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    pointer-events: none;
+  }
+
+  /* Textarea */
+  .champ__textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+  }
+
+  /* Bouton soumettre */
+  .formulaire__btn {
+    align-self: flex-start;
+    font-size: 1rem;
+    padding: 0.9rem 2.25rem;
+  }
+
+  .formulaire__mention {
+    font-size: 0.78rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+
+  /* =====================
+     Bloc infos de contact
+  ===================== */
+  .contact__infos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Bloc générique */
+  .info-bloc {
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 1.5rem;
+  }
+
+  .info-bloc--tel {
+    border-color: rgba(230, 57, 70, 0.35);
+    background-color: rgba(230, 57, 70, 0.04);
+  }
+
+  .info-bloc__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 0.75rem;
+  }
+
+  .info-bloc__note {
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    margin-top: 0.4rem;
+  }
+
+  /* Téléphone */
+  .info-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: opacity 0.2s;
+  }
+
+  .info-tel:hover {
+    opacity: 0.85;
+  }
+
+  .info-tel__icone {
+    font-size: 1.5rem;
+  }
+
+  .info-tel__numero {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--couleur-texte);
+  }
+
+  /* Zone géographique */
+  .info-zone {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .info-zone__icone {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .info-zone__titre {
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .info-zone__liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  .info-zone__liste li::before {
+    content: "› ";
+    color: var(--couleur-rouge);
+  }
+
+  /* Délai */
+  .info-delai {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .info-delai__icone {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .info-delai__valeur {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .info-delai__note {
+    font-size: 0.85rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  /* Email */
+  .info-email {
+    font-size: 0.95rem;
+    color: var(--couleur-rouge);
+    font-weight: 500;
+    word-break: break-all;
+    transition: opacity 0.2s;
+  }
+
+  .info-email:hover {
+    opacity: 0.8;
+  }
+
+
+  /* =====================
+     Tablette (≥ 600px)
+  ===================== */
+  @media (min-width: 600px) {
+    .formulaire__ligne {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .formulaire__btn {
+      align-self: auto;
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 900px)
+  ===================== */
+  @media (min-width: 900px) {
+    .contact__grille {
+      /* Formulaire prend 60%, infos 40% */
+      grid-template-columns: 3fr 2fr;
+      align-items: start;
+    }
+  }
+</style>

@@ -1,0 +1,672 @@
+---
+/* Page Services — Story 2.2 */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Services Montage PC Gaming & Workstation | Sefacile PC"
+  description="Découvrez mes services de montage PC Gaming et Workstation 3D en Isère. Composants garantis, câblage soigné, tests de stabilité."
+>
+  <Header />
+
+  <main>
+
+    <!-- ================================
+         1. HERO PAGE
+    ================================= -->
+    <section class="page-hero">
+      <div class="conteneur">
+        <h1 class="page-hero__titre">Mes services</h1>
+        <p class="page-hero__sous-titre">
+          Du PC Gaming entrée de gamme à la Workstation expert —
+          chaque build est assemblé sur-mesure pour votre usage, en Isère.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         2. SERVICE PC GAMING
+    ================================= -->
+    <section class="service" id="gaming" aria-labelledby="titreGaming">
+      <div class="conteneur">
+
+        <div class="service__entete">
+          <div class="service__icone-wrap" aria-hidden="true">🎮</div>
+          <div>
+            <h2 class="service__titre" id="titreGaming">PC Gaming</h2>
+            <p class="service__desc">
+              J'assemble des PC Gaming hautes performances adaptés à votre jeu,
+              votre résolution cible et votre budget. Chaque composant est choisi
+              pour maximiser les FPS et garantir une stabilité à long terme.
+            </p>
+          </div>
+        </div>
+
+        <div class="service__corps">
+
+          <!-- Pour qui -->
+          <div class="service__bloc">
+            <h3 class="service__sous-titre">Pour qui ?</h3>
+            <ul class="tags">
+              <li class="tag">🕹️ Gamers PC</li>
+              <li class="tag">📡 Streamers</li>
+              <li class="tag">🏆 Joueurs compétitifs</li>
+              <li class="tag">🎥 Créateurs de contenu gaming</li>
+            </ul>
+          </div>
+
+          <!-- Ce qui est inclus -->
+          <div class="service__bloc">
+            <h3 class="service__sous-titre">Ce qui est inclus</h3>
+            <ul class="inclus">
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Sélection des composants selon votre usage et votre budget
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Montage soigné et câble management propre
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Tests de stabilité sur 24 h (stress CPU, GPU, RAM)
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Installation Windows + drivers + mises à jour
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Remise en main propre en Isère (ou livraison proche)
+              </li>
+            </ul>
+          </div>
+
+          <!-- Gammes de prix -->
+          <div class="service__bloc service__bloc--gammes">
+            <h3 class="service__sous-titre">Les gammes</h3>
+            <div class="gammes">
+
+              <div class="gamme">
+                <div class="gamme__nom">Entrée de gamme</div>
+                <div class="gamme__prix">800 € – 1 200 €</div>
+                <p class="gamme__detail">
+                  1080p fluide, 60–144 Hz. Idéal pour débuter ou les jeux e-sport (Valorant, CS2, Fortnite).
+                </p>
+              </div>
+
+              <div class="gamme gamme--vedette">
+                <div class="gamme__badge" aria-label="Gamme la plus populaire">⭐ Populaire</div>
+                <div class="gamme__nom">Milieu de gamme</div>
+                <div class="gamme__prix">1 200 € – 1 800 €</div>
+                <p class="gamme__detail">
+                  1440p haute fréquence ou 4K 60 Hz. AAA récents en ultra, streaming simultané.
+                </p>
+              </div>
+
+              <div class="gamme">
+                <div class="gamme__nom">Haut de gamme</div>
+                <div class="gamme__prix">1 800 € – 2 500 €+</div>
+                <p class="gamme__detail">
+                  4K 144 Hz, watercooling custom, RGB maîtrisé. La meilleure expérience possible.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <a href="/contact" class="btn-principal service__cta">
+          Devis Gaming gratuit
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- ================================
+         3. SERVICE WORKSTATION 3D
+    ================================= -->
+    <section class="service service--alt" id="workstation" aria-labelledby="titreWorkstation">
+      <div class="conteneur">
+
+        <div class="service__entete">
+          <div class="service__icone-wrap" aria-hidden="true">🖥️</div>
+          <div>
+            <h2 class="service__titre" id="titreWorkstation">Workstation 3D</h2>
+            <p class="service__desc">
+              Des stations de travail taillées pour les logiciels exigeants :
+              rendu 3D, montage vidéo 4K, simulation ou CAO. Chaque composant
+              est sélectionné pour sa fiabilité professionnelle et ses performances en charge continue.
+            </p>
+          </div>
+        </div>
+
+        <div class="service__corps">
+
+          <!-- Pour qui -->
+          <div class="service__bloc">
+            <h3 class="service__sous-titre">Pour qui ?</h3>
+            <ul class="tags">
+              <li class="tag">🎨 Graphistes & motion designers</li>
+              <li class="tag">🎬 Vidéastes & monteurs</li>
+              <li class="tag">🏗️ Architectes & designers 3D</li>
+              <li class="tag">⚙️ Ingénieurs & techniciens CAO</li>
+            </ul>
+          </div>
+
+          <!-- Ce qui est inclus -->
+          <div class="service__bloc">
+            <h3 class="service__sous-titre">Ce qui est inclus</h3>
+            <ul class="inclus">
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Sélection des composants selon votre usage et votre budget
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Montage soigné et câble management propre
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Tests de stabilité sur 24 h (stress CPU, GPU, RAM)
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Installation Windows + drivers + mises à jour
+              </li>
+              <li class="inclus__item">
+                <span class="inclus__coche" aria-hidden="true">✓</span>
+                Remise en main propre en Isère (ou livraison proche)
+              </li>
+              <li class="inclus__item inclus__item--bonus">
+                <span class="inclus__coche inclus__coche--bonus" aria-hidden="true">+</span>
+                Optimisation logicielle pour vos outils métier
+                <span class="inclus__outils">(Blender · DaVinci Resolve · AutoCAD · Cinema 4D)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Gammes de prix -->
+          <div class="service__bloc service__bloc--gammes">
+            <h3 class="service__sous-titre">Les gammes</h3>
+            <div class="gammes">
+
+              <div class="gamme">
+                <div class="gamme__nom">Studio</div>
+                <div class="gamme__prix">1 500 € – 2 200 €</div>
+                <p class="gamme__detail">
+                  Rendu Blender efficace, montage 4K fluide. Idéal pour les indépendants et étudiants.
+                </p>
+              </div>
+
+              <div class="gamme gamme--vedette">
+                <div class="gamme__badge">⭐ Populaire</div>
+                <div class="gamme__nom">Professionnel</div>
+                <div class="gamme__prix">2 200 € – 3 500 €</div>
+                <p class="gamme__detail">
+                  GPU de rendu dédié, RAM ECC optionnelle. Projets complexes, clients professionnels.
+                </p>
+              </div>
+
+              <div class="gamme">
+                <div class="gamme__nom">Expert</div>
+                <div class="gamme__prix">3 500 € – 5 000 €+</div>
+                <p class="gamme__detail">
+                  CPU Threadripper ou Xeon, GPU Quadro/RTX. Simulations, VFX, studios de production.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <a href="/contact" class="btn-principal service__cta">
+          Devis Workstation gratuit
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- ================================
+         4. CE QUI EST TOUJOURS INCLUS
+    ================================= -->
+    <section class="garanties" aria-labelledby="titreGaranties">
+      <div class="conteneur">
+
+        <div class="section__entete">
+          <h2 class="section__titre" id="titreGaranties">Toujours inclus, quel que soit le projet</h2>
+        </div>
+
+        <ul class="garanties__grille">
+
+          <li class="garantie">
+            <span class="garantie__icone" aria-hidden="true">🛡️</span>
+            <div>
+              <h3 class="garantie__titre">Garantie pièces constructeur</h3>
+              <p class="garantie__texte">
+                Tous les composants sont neufs, issus de revendeurs agréés,
+                avec garantie constructeur complète (2 à 5 ans selon les pièces).
+              </p>
+            </div>
+          </li>
+
+          <li class="garantie">
+            <span class="garantie__icone" aria-hidden="true">💬</span>
+            <div>
+              <h3 class="garantie__titre">Conseil personnalisé</h3>
+              <p class="garantie__texte">
+                Je prends le temps d'analyser votre usage avant de proposer
+                une configuration. Pas de vente forcée, pas de surcoût inutile.
+              </p>
+            </div>
+          </li>
+
+          <li class="garantie">
+            <span class="garantie__icone" aria-hidden="true">📞</span>
+            <div>
+              <h3 class="garantie__titre">Suivi après livraison</h3>
+              <p class="garantie__texte">
+                Je reste disponible après la remise de votre PC pour répondre
+                à vos questions et résoudre tout problème éventuel.
+              </p>
+            </div>
+          </li>
+
+          <li class="garantie">
+            <span class="garantie__icone" aria-hidden="true">📍</span>
+            <div>
+              <h3 class="garantie__titre">Déplacement en Isère</h3>
+              <p class="garantie__texte">
+                Remise en main propre possible à Grenoble, Voiron,
+                Bourgoin-Jallieu et alentours. Livraison sécurisée sur demande.
+              </p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         5. CTA FINAL
+    ================================= -->
+    <section class="cta-final" aria-labelledby="titreCtaServices">
+      <div class="conteneur cta-final__inner">
+        <div>
+          <h2 class="cta-final__titre" id="titreCtaServices">Vous avez un projet ?</h2>
+          <p class="cta-final__sous-titre">
+            Décrivez-moi votre besoin — je vous réponds sous 24 h avec un devis sur-mesure.
+          </p>
+        </div>
+        <a href="/contact" class="btn-principal cta-final__btn">
+          Demander un devis gratuit
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+
+<style>
+  /* =====================
+     En-tête de page
+  ===================== */
+  .page-hero {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--couleur-bordure);
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
+                var(--couleur-fond);
+  }
+
+  .page-hero__titre {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     En-têtes de section
+  ===================== */
+  .section__entete {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section__titre {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+  }
+
+  /* =====================
+     Sections de service
+  ===================== */
+  .service {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  /* Alternance de fond pour séparer visuellement les deux services */
+  .service--alt {
+    background-color: var(--couleur-surface);
+  }
+
+  /* En-tête du service : icône + titre + description */
+  .service__entete {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .service__icone-wrap {
+    font-size: 2.8rem;
+    line-height: 1;
+  }
+
+  .service__titre {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 0.6rem;
+  }
+
+  .service__desc {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 65ch;
+  }
+
+  /* Corps : blocs empilés sur mobile */
+  .service__corps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .service__sous-titre {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 1rem;
+  }
+
+  /* =====================
+     Tags "Pour qui"
+  ===================== */
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .tag {
+    font-size: 0.875rem;
+    background-color: var(--couleur-surface-2);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    color: var(--couleur-texte);
+  }
+
+  /* =====================
+     Liste "Inclus"
+  ===================== */
+  .inclus {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .inclus__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.5;
+  }
+
+  .inclus__coche {
+    color: var(--couleur-rouge);
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  /* Item bonus (optimisation logicielle) */
+  .inclus__item--bonus {
+    color: var(--couleur-texte);
+    font-weight: 500;
+    flex-wrap: wrap;
+  }
+
+  .inclus__coche--bonus {
+    background-color: var(--couleur-rouge);
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .inclus__outils {
+    display: block;
+    width: 100%;
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    font-weight: 400;
+    margin-left: 1.6rem;
+    margin-top: 0.2rem;
+  }
+
+  /* =====================
+     Gammes de prix
+  ===================== */
+  .gammes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .gamme {
+    position: relative;
+    background-color: var(--couleur-surface-2);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .gamme--vedette {
+    border-color: rgba(230, 57, 70, 0.5);
+    box-shadow: var(--ombre-rouge);
+  }
+
+  .gamme__badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--couleur-rouge);
+    background: rgba(230, 57, 70, 0.1);
+    border: 1px solid rgba(230, 57, 70, 0.3);
+    border-radius: 999px;
+    padding: 0.2rem 0.65rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .gamme__nom {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .gamme__prix {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--couleur-rouge);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .gamme__detail {
+    font-size: 0.85rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.5;
+  }
+
+  /* Bouton CTA du service */
+  .service__cta {
+    display: inline-block;
+  }
+
+
+  /* =====================
+     Garanties
+  ===================== */
+  .garanties {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+    border-top: 1px solid var(--couleur-bordure);
+  }
+
+  .garanties__grille {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .garantie {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 1.5rem;
+  }
+
+  .garantie__icone {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .garantie__titre {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .garantie__texte {
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.6;
+  }
+
+
+  /* =====================
+     CTA final
+  ===================== */
+  .cta-final {
+    padding: var(--padding-section);
+    background: linear-gradient(135deg, rgba(230,57,70,0.1) 0%, transparent 60%),
+                var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+  }
+
+  .cta-final__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .cta-final__titre {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-final__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .cta-final__btn {
+    font-size: 1rem;
+    padding: 0.9rem 2.25rem;
+    flex-shrink: 0;
+  }
+
+
+  /* =====================
+     Tablette (≥ 640px)
+  ===================== */
+  @media (min-width: 640px) {
+    .gammes {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .garanties__grille {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 900px)
+  ===================== */
+  @media (min-width: 900px) {
+    .service__entete {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .service__corps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2rem 3rem;
+    }
+
+    /* Le bloc gammes occupe les deux colonnes */
+    .service__bloc--gammes {
+      grid-column: 1 / -1;
+    }
+
+    .cta-final__inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>
