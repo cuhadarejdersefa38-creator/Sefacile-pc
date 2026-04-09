@@ -1,0 +1,819 @@
+---
+/* Page Devis — formulaire de devis en ligne */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Devis gratuit Montage PC Isère | Sefacile PC"
+  description="Demandez votre devis gratuit pour le montage ou l'entretien de votre PC en Isère. Réponse sous 24h, sans engagement."
+>
+  <Header />
+
+  <main>
+
+    <!-- ================================
+         HERO
+    ================================= -->
+    <section class="page-hero">
+      <div class="conteneur">
+        <h1 class="page-hero__titre">Demande de devis gratuit</h1>
+        <p class="page-hero__sous-titre">
+          Remplis ce formulaire en 2 minutes — je te réponds sous 24 h avec une proposition personnalisée.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         FORMULAIRE
+    ================================= -->
+    <section class="devis-section">
+      <div class="conteneur devis__inner">
+
+        <!-- Message de succès (caché par défaut) -->
+        <div class="succes" id="messageSucces" role="alert" aria-live="polite" hidden>
+          <span class="succes__icone" aria-hidden="true">✅</span>
+          <div>
+            <strong>Demande envoyée !</strong>
+            <p>Merci ! Je reviens vers toi sous 24 h avec un devis personnalisé.</p>
+          </div>
+        </div>
+
+        <!-- Formulaire Netlify -->
+        <form
+          id="formulaireDevis"
+          name="devis"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="formulaire"
+          novalidate
+        >
+          <input type="hidden" name="form-name" value="devis" />
+          <p hidden><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+
+          <!-- ===========================
+               BLOC 1 — INFOS CLIENT
+          =========================== -->
+          <fieldset class="bloc">
+            <legend class="bloc__titre">
+              <span class="bloc__num" aria-hidden="true">1</span>
+              Tes coordonnées
+            </legend>
+
+            <div class="champs-ligne">
+              <div class="champ">
+                <label class="champ__label" for="prenom">
+                  Prénom <span class="champ__requis" aria-hidden="true">*</span>
+                </label>
+                <input
+                  class="champ__input"
+                  type="text"
+                  id="prenom"
+                  name="prenom"
+                  placeholder="Jean"
+                  required
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="nom">
+                  Nom <span class="champ__requis" aria-hidden="true">*</span>
+                </label>
+                <input
+                  class="champ__input"
+                  type="text"
+                  id="nom"
+                  name="nom"
+                  placeholder="Dupont"
+                  required
+                  autocomplete="family-name"
+                />
+              </div>
+            </div>
+
+            <div class="champs-ligne">
+              <div class="champ">
+                <label class="champ__label" for="email">
+                  Email <span class="champ__requis" aria-hidden="true">*</span>
+                </label>
+                <input
+                  class="champ__input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="jean@exemple.fr"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="champ">
+                <label class="champ__label" for="telephone">Téléphone</label>
+                <input
+                  class="champ__input"
+                  type="tel"
+                  id="telephone"
+                  name="telephone"
+                  placeholder="06 12 34 56 78"
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+
+            <div class="champ champ--demi">
+              <label class="champ__label" for="ville">Ville (Isère ?)</label>
+              <input
+                class="champ__input"
+                type="text"
+                id="ville"
+                name="ville"
+                placeholder="Grenoble, Voiron, Corbelin…"
+                autocomplete="address-level2"
+              />
+            </div>
+
+          </fieldset>
+
+
+          <!-- ===========================
+               BLOC 2 — TYPE PRESTATION
+          =========================== -->
+          <fieldset class="bloc">
+            <legend class="bloc__titre">
+              <span class="bloc__num" aria-hidden="true">2</span>
+              Type de prestation <span class="champ__requis" aria-hidden="true">*</span>
+            </legend>
+
+            <div class="choix-prestation" role="group" aria-label="Choix de la prestation">
+              <button
+                type="button"
+                class="choix__btn"
+                id="btnMontage"
+                data-prestation="montage"
+                aria-pressed="false"
+              >
+                <span class="choix__icone" aria-hidden="true">🔧</span>
+                <span class="choix__label">Montage PC</span>
+              </button>
+              <button
+                type="button"
+                class="choix__btn"
+                id="btnEntretien"
+                data-prestation="entretien"
+                aria-pressed="false"
+              >
+                <span class="choix__icone" aria-hidden="true">🧹</span>
+                <span class="choix__label">Entretien PC</span>
+              </button>
+            </div>
+
+            <!-- Champ caché pour la valeur -->
+            <input type="hidden" name="prestation" id="champPrestation" value="" />
+
+          </fieldset>
+
+
+          <!-- ===========================
+               BLOC 3A — MONTAGE PC
+               (caché par défaut)
+          =========================== -->
+          <fieldset class="bloc bloc--conditionnel" id="blocMontage" hidden>
+            <legend class="bloc__titre">
+              <span class="bloc__num" aria-hidden="true">3</span>
+              Ton projet PC Gaming / Bureau / 3D
+            </legend>
+
+            <!-- Usage principal -->
+            <div class="champ">
+              <p class="champ__label" id="labelUsage">
+                Usage principal <span class="champ__requis" aria-hidden="true">*</span>
+              </p>
+              <div class="radio-groupe" role="radiogroup" aria-labelledby="labelUsage">
+                <label class="radio">
+                  <input type="radio" name="usage" value="gaming" />
+                  <span>🎮 Gaming</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="usage" value="bureautique" />
+                  <span>💼 Bureautique</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="usage" value="3d-video" />
+                  <span>🎬 3D / Vidéo</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Budget composants -->
+            <div class="champ">
+              <p class="champ__label" id="labelBudget">Budget composants</p>
+              <div class="radio-groupe" role="radiogroup" aria-labelledby="labelBudget">
+                <label class="radio">
+                  <input type="radio" name="budget" value="moins-800" />
+                  <span>Moins de 800 €</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="budget" value="800-1500" />
+                  <span>800 – 1 500 €</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="budget" value="1500-3000" />
+                  <span>1 500 – 3 000 €</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="budget" value="plus-3000" />
+                  <span>+ 3 000 €</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Config déjà choisie ? -->
+            <div class="champ">
+              <p class="champ__label" id="labelConfig">As-tu déjà ta config ?</p>
+              <div class="radio-groupe" role="radiogroup" aria-labelledby="labelConfig">
+                <label class="radio">
+                  <input type="radio" name="config_deja" value="oui" />
+                  <span>Oui, j'ai ma liste de composants</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="config_deja" value="non" />
+                  <span>Non, j'ai besoin de conseils</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Message libre -->
+            <div class="champ">
+              <label class="champ__label" for="messageMontage">Décris ton projet</label>
+              <textarea
+                class="champ__input champ__textarea"
+                id="messageMontage"
+                name="message"
+                rows="4"
+                placeholder="Jeux visés, résolution cible, logiciels utilisés, contraintes de budget… tout ce qui peut m'aider à te proposer la meilleure config."
+              ></textarea>
+            </div>
+
+          </fieldset>
+
+
+          <!-- ===========================
+               BLOC 3B — ENTRETIEN PC
+               (caché par défaut)
+          =========================== -->
+          <fieldset class="bloc bloc--conditionnel" id="blocEntretien" hidden>
+            <legend class="bloc__titre">
+              <span class="bloc__num" aria-hidden="true">3</span>
+              Ton PC à entretenir
+            </legend>
+
+            <!-- Problème principal -->
+            <div class="champ">
+              <p class="champ__label" id="labelProbleme">Problème principal</p>
+              <div class="radio-groupe radio-groupe--wrap" role="radiogroup" aria-labelledby="labelProbleme">
+                <label class="radio">
+                  <input type="radio" name="probleme" value="chauffe" />
+                  <span>🌡️ Chauffe</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="probleme" value="bruit" />
+                  <span>🔊 Bruit</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="probleme" value="lent" />
+                  <span>🐢 Lent</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="probleme" value="nettoyage" />
+                  <span>🧹 Nettoyage annuel</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="probleme" value="autre" />
+                  <span>❓ Autre</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Message libre -->
+            <div class="champ">
+              <label class="champ__label" for="messageEntretien">Décris le problème</label>
+              <textarea
+                class="champ__input champ__textarea"
+                id="messageEntretien"
+                name="message_entretien"
+                rows="4"
+                placeholder="Depuis quand ? Qu'est-ce qui a changé ? Quel modèle de PC ?…"
+              ></textarea>
+            </div>
+
+          </fieldset>
+
+
+          <!-- ===========================
+               BOUTON ENVOI
+          =========================== -->
+          <div class="formulaire__footer">
+            <button type="submit" class="btn-principal formulaire__btn">
+              Envoyer ma demande de devis
+            </button>
+            <p class="formulaire__mention">
+              * Champs obligatoires. Réponse sous 24 h, sans engagement.
+            </p>
+          </div>
+
+        </form>
+
+        <!-- Panneau latéral récap -->
+        <aside class="devis__aside" aria-label="Pourquoi nous choisir">
+          <div class="aside__bloc">
+            <h2 class="aside__titre">Pourquoi Sefacile PC ?</h2>
+            <ul class="aside__liste">
+              <li>
+                <span aria-hidden="true">✓</span>
+                Devis gratuit et sans engagement
+              </li>
+              <li>
+                <span aria-hidden="true">✓</span>
+                Réponse sous 24 h
+              </li>
+              <li>
+                <span aria-hidden="true">✓</span>
+                Pas de vente de composants — tu paies le montage uniquement
+              </li>
+              <li>
+                <span aria-hidden="true">✓</span>
+                Livraison en main propre en Isère
+              </li>
+              <li>
+                <span aria-hidden="true">✓</span>
+                Conseil inclus pour choisir tes pièces
+              </li>
+            </ul>
+          </div>
+
+          <div class="aside__bloc aside__bloc--contact">
+            <p class="aside__label">Préfères-tu appeler ?</p>
+            <a href="tel:0474555657" class="aside__tel">
+              <span aria-hidden="true">📞</span> 04 74 55 56 57
+            </a>
+            <p class="aside__horaires">Lun – Sam, 9h – 19h</p>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+
+<!-- Script : sélection prestation + soumission async -->
+<script>
+  /* --- Sélection de la prestation --- */
+  const btnMontage   = document.getElementById("btnMontage")   as HTMLButtonElement | null;
+  const btnEntretien = document.getElementById("btnEntretien") as HTMLButtonElement | null;
+  const blocMontage  = document.getElementById("blocMontage");
+  const blocEntretien= document.getElementById("blocEntretien");
+  const champPrestation = document.getElementById("champPrestation") as HTMLInputElement | null;
+
+  function selectionnerPrestation(type: "montage" | "entretien") {
+    /* Mise à jour du champ caché */
+    if (champPrestation) champPrestation.value = type;
+
+    /* Boutons aria-pressed */
+    btnMontage?.setAttribute("aria-pressed",   String(type === "montage"));
+    btnEntretien?.setAttribute("aria-pressed", String(type === "entretien"));
+
+    /* Affichage conditionnel des blocs */
+    if (blocMontage)   blocMontage.hidden   = type !== "montage";
+    if (blocEntretien) blocEntretien.hidden = type !== "entretien";
+  }
+
+  btnMontage?.addEventListener("click",   () => selectionnerPrestation("montage"));
+  btnEntretien?.addEventListener("click", () => selectionnerPrestation("entretien"));
+
+
+  /* --- Soumission async Netlify --- */
+  const form = document.getElementById("formulaireDevis") as HTMLFormElement | null;
+  const messageSucces = document.getElementById("messageSucces");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const encoded = new URLSearchParams(data as unknown as Record<string, string>).toString();
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encoded,
+      });
+
+      if (res.ok) {
+        form.hidden = true;
+        if (messageSucces) messageSucces.hidden = false;
+        messageSucces?.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        alert("Une erreur s'est produite. Merci de réessayer ou d'appeler directement.");
+      }
+    } catch {
+      alert("Impossible d'envoyer la demande. Vérifiez votre connexion.");
+    }
+  });
+</script>
+
+
+<style>
+  /* =====================
+     Hero
+  ===================== */
+  .page-hero {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--couleur-bordure);
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(13,211,178,0.07) 0%, transparent 70%),
+                var(--couleur-fond);
+  }
+
+  .page-hero__titre {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     Layout principal
+  ===================== */
+  .devis-section {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+  }
+
+  .devis__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* =====================
+     Message succès
+  ===================== */
+  .succes[hidden]    { display: none; }
+  .formulaire[hidden]{ display: none; }
+
+  .succes {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: var(--rayon-grand);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .succes__icone { font-size: 1.5rem; flex-shrink: 0; }
+
+  .succes strong {
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+    color: #4ade80;
+  }
+
+  .succes p {
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  /* =====================
+     Formulaire
+  ===================== */
+  .formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* =====================
+     Blocs (fieldsets)
+  ===================== */
+  .bloc {
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 1.75rem;
+    background-color: var(--couleur-surface);
+  }
+
+  /* Pas de border sur les blocs conditionnels tant que cachés */
+  .bloc--conditionnel {
+    border-color: rgba(13, 211, 178, 0.2);
+    background-color: rgba(13, 211, 178, 0.02);
+  }
+
+  .bloc--conditionnel[hidden] { display: none; }
+
+  .bloc__titre {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--couleur-texte);
+    margin-bottom: 1.5rem;
+  }
+
+  .bloc__num {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background-color: var(--couleur-rouge);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* =====================
+     Champs individuels
+  ===================== */
+  .champs-ligne {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .champ {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .champ:last-child { margin-bottom: 0; }
+
+  .champ--demi { max-width: 320px; }
+
+  .champ__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--couleur-texte);
+  }
+
+  .champ__requis { color: var(--couleur-rouge); }
+
+  .champ__input {
+    background-color: var(--couleur-surface-2);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    color: var(--couleur-texte);
+    font-family: var(--police);
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .champ__input::placeholder { color: #555; }
+
+  .champ__input:focus {
+    border-color: var(--couleur-rouge);
+    box-shadow: 0 0 0 3px rgba(13, 211, 178, 0.15);
+  }
+
+  .champ__textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+  }
+
+  /* =====================
+     Boutons choix prestation
+  ===================== */
+  .choix-prestation {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .choix__btn {
+    flex: 1;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.25rem 1rem;
+    background-color: var(--couleur-surface-2);
+    border: 2px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    color: var(--couleur-texte-secondaire);
+    font-family: var(--police);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+  }
+
+  .choix__btn:hover {
+    border-color: rgba(13, 211, 178, 0.4);
+    color: var(--couleur-texte);
+  }
+
+  .choix__btn[aria-pressed="true"] {
+    border-color: var(--couleur-rouge);
+    background-color: rgba(13, 211, 178, 0.08);
+    color: var(--couleur-rouge);
+    box-shadow: 0 0 12px rgba(13, 211, 178, 0.2);
+  }
+
+  .choix__icone { font-size: 1.75rem; }
+
+  /* =====================
+     Radio buttons stylés
+  ===================== */
+  .radio-groupe {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .radio-groupe--wrap {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .radio {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem;
+    background-color: var(--couleur-surface-2);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon);
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  .radio:hover {
+    border-color: rgba(13, 211, 178, 0.35);
+    color: var(--couleur-texte);
+  }
+
+  .radio input[type="radio"] {
+    accent-color: var(--couleur-rouge);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .radio:has(input:checked) {
+    border-color: var(--couleur-rouge);
+    background-color: rgba(13, 211, 178, 0.06);
+    color: var(--couleur-texte);
+  }
+
+  /* =====================
+     Footer formulaire
+  ===================== */
+  .formulaire__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .formulaire__btn {
+    font-size: 1rem;
+    padding: 1rem 2.5rem;
+    align-self: flex-start;
+  }
+
+  .formulaire__mention {
+    font-size: 0.78rem;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  /* =====================
+     Panneau latéral
+  ===================== */
+  .devis__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-self: start;
+  }
+
+  .aside__bloc {
+    background-color: var(--couleur-surface);
+    border: 1px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    padding: 1.5rem;
+  }
+
+  .aside__bloc--contact {
+    border-color: rgba(13, 211, 178, 0.3);
+    background-color: rgba(13, 211, 178, 0.03);
+  }
+
+  .aside__titre {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .aside__liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .aside__liste li {
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.5;
+  }
+
+  .aside__liste span {
+    color: var(--couleur-rouge);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .aside__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 0.6rem;
+  }
+
+  .aside__tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--couleur-texte);
+    transition: opacity 0.2s;
+  }
+
+  .aside__tel:hover { opacity: 0.8; }
+
+  .aside__horaires {
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    margin-top: 0.35rem;
+  }
+
+
+  /* =====================
+     Tablette (≥ 600px)
+  ===================== */
+  @media (min-width: 600px) {
+    .champs-ligne {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .formulaire__btn {
+      align-self: auto;
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 960px)
+  ===================== */
+  @media (min-width: 960px) {
+    .devis__inner {
+      grid-template-columns: 1fr 300px;
+      align-items: start;
+    }
+  }
+</style>

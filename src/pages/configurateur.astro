@@ -1,0 +1,823 @@
+---
+/* Page Configurateur — stepper interactif de budget PC */
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Configurateur PC Isère | Sefacile PC"
+  description="Trouve la configuration PC idéale selon ton usage et ton budget en 2 clics. Gaming, Bureautique, Création 3D — conseils gratuits en Isère."
+>
+  <Header />
+
+  <main>
+
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="conteneur">
+        <h1 class="page-hero__titre">Quel PC te faut-il ?</h1>
+        <p class="page-hero__sous-titre">
+          Réponds à 2 questions et découvre la configuration idéale pour ton usage et ton budget.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Configurateur -->
+    <section class="config-section">
+      <div class="conteneur config__wrap">
+
+        <!-- ============================
+             STEPPER — indicateur
+        ============================= -->
+        <div class="stepper" aria-label="Progression du configurateur" role="list">
+          <div class="stepper__etape stepper__etape--actif" id="step-ind-1" role="listitem" aria-current="step">
+            <div class="stepper__cercle">1</div>
+            <span class="stepper__label">Usage</span>
+          </div>
+          <div class="stepper__trait" aria-hidden="true"></div>
+          <div class="stepper__etape" id="step-ind-2" role="listitem">
+            <div class="stepper__cercle">2</div>
+            <span class="stepper__label">Budget</span>
+          </div>
+          <div class="stepper__trait" aria-hidden="true"></div>
+          <div class="stepper__etape" id="step-ind-3" role="listitem">
+            <div class="stepper__cercle">3</div>
+            <span class="stepper__label">Résultat</span>
+          </div>
+        </div>
+
+
+        <!-- ============================
+             ÉTAPE 1 — Usage
+        ============================= -->
+        <div class="etape" id="etape1" aria-label="Étape 1 : Usage principal">
+          <h2 class="etape__titre">Quel est ton usage principal ?</h2>
+          <div class="choix-grille">
+
+            <button class="choix-btn" data-usage="gaming" type="button">
+              <span class="choix-btn__icone" aria-hidden="true">🎮</span>
+              <span class="choix-btn__label">Gaming</span>
+              <span class="choix-btn__desc">Jeux vidéo, streaming, e-sport</span>
+            </button>
+
+            <button class="choix-btn" data-usage="bureautique" type="button">
+              <span class="choix-btn__icone" aria-hidden="true">💼</span>
+              <span class="choix-btn__label">Bureautique / Études</span>
+              <span class="choix-btn__desc">Web, Office, visio, développement</span>
+            </button>
+
+            <button class="choix-btn" data-usage="creation" type="button">
+              <span class="choix-btn__icone" aria-hidden="true">🎨</span>
+              <span class="choix-btn__label">Création 3D / Vidéo</span>
+              <span class="choix-btn__desc">Blender, DaVinci, After Effects, CAO</span>
+            </button>
+
+          </div>
+        </div>
+
+
+        <!-- ============================
+             ÉTAPE 2 — Budget
+        ============================= -->
+        <div class="etape" id="etape2" hidden aria-label="Étape 2 : Budget composants">
+          <button class="btn-retour" id="btnRetour1" type="button" aria-label="Retour à l'étape 1">
+            <span aria-hidden="true">←</span> Retour
+          </button>
+          <h2 class="etape__titre">Quel est ton budget composants ?</h2>
+          <p class="etape__sous-titre">Le forfait montage (150 €) n'est pas inclus dans ces estimations.</p>
+          <div class="choix-grille choix-grille--budget">
+
+            <button class="choix-btn choix-btn--budget" data-budget="moins800" type="button">
+              <span class="choix-btn__prix">moins de 800 €</span>
+              <span class="choix-btn__desc">L'essentiel bien fait</span>
+            </button>
+
+            <button class="choix-btn choix-btn--budget" data-budget="800-1500" type="button">
+              <span class="choix-btn__prix">800 € – 1 500 €</span>
+              <span class="choix-btn__desc">Le meilleur rapport qualité/prix</span>
+            </button>
+
+            <button class="choix-btn choix-btn--budget" data-budget="1500-3000" type="button">
+              <span class="choix-btn__prix">1 500 € – 3 000 €</span>
+              <span class="choix-btn__desc">Performances élevées</span>
+            </button>
+
+            <button class="choix-btn choix-btn--budget" data-budget="plus3000" type="button">
+              <span class="choix-btn__prix">Plus de 3 000 €</span>
+              <span class="choix-btn__desc">Sans compromis</span>
+            </button>
+
+          </div>
+        </div>
+
+
+        <!-- ============================
+             ÉTAPE 3 — Résultat
+        ============================= -->
+        <div class="etape" id="etape3" hidden aria-label="Étape 3 : Configuration recommandée">
+          <button class="btn-retour" id="btnRetour2" type="button" aria-label="Retour à l'étape 2">
+            <span aria-hidden="true">←</span> Retour
+          </button>
+          <h2 class="etape__titre">Ta configuration recommandée</h2>
+
+          <!-- Carte résultat (remplie par JS) -->
+          <div class="resultat" id="carteResultat" aria-live="polite">
+            <!-- Injecté dynamiquement -->
+          </div>
+
+          <div class="resultat__actions">
+            <a href="/devis" class="btn-principal resultat__btn-devis">
+              Demander un devis gratuit
+            </a>
+            <button class="btn-secondaire resultat__btn-reset" id="btnRecommencer" type="button">
+              Recommencer
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+
+<script>
+  /* =====================================================
+     DONNÉES — 12 configurations (usage × budget)
+  ===================================================== */
+  type Config = {
+    nom: string;
+    populaire?: boolean;
+    cpu: string;
+    gpu: string;
+    ram: string;
+    stockage: string;
+    budget: string;
+    ideal: string;
+  };
+
+  const configs: Record<string, Record<string, Config>> = {
+    gaming: {
+      moins800: {
+        nom: "Gaming Entrée de gamme — 1080p",
+        cpu: "Ryzen 5 5600",
+        gpu: "RX 6600 ou RTX 3060",
+        ram: "16 Go DDR4 3200 MHz",
+        stockage: "SSD 500 Go NVMe",
+        budget: "650 – 750 €",
+        ideal: "1080p 60–100 fps, jeux AA/AAA",
+      },
+      "800-1500": {
+        nom: "Gaming Milieu de gamme — 1440p",
+        populaire: true,
+        cpu: "Ryzen 5 7600 ou Intel i5-13600K",
+        gpu: "RTX 4060 Ti ou RX 7700 XT",
+        ram: "16 Go DDR5 6000 MHz",
+        stockage: "SSD 1 To NVMe",
+        budget: "950 – 1 300 €",
+        ideal: "1440p 144 fps, streaming simultané",
+      },
+      "1500-3000": {
+        nom: "Gaming Haut de gamme — 4K",
+        cpu: "Ryzen 7 7800X3D",
+        gpu: "RTX 4080 Super",
+        ram: "32 Go DDR5 6000 MHz",
+        stockage: "SSD 2 To NVMe",
+        budget: "1 800 – 2 500 €",
+        ideal: "4K 60 fps+, 1440p 165 fps+",
+      },
+      plus3000: {
+        nom: "Gaming Enthousiaste — Sans limite",
+        cpu: "Ryzen 9 7950X3D",
+        gpu: "RTX 4090",
+        ram: "64 Go DDR5 6400 MHz",
+        stockage: "SSD 4 To NVMe",
+        budget: "3 000 – 4 500 €",
+        ideal: "4K 165 fps+, streaming professionnel",
+      },
+    },
+    bureautique: {
+      moins800: {
+        nom: "Bureautique Essentiel",
+        cpu: "Ryzen 5 5600G (GPU intégré)",
+        gpu: "Graphiques intégrés — suffisant pour cet usage",
+        ram: "16 Go DDR4",
+        stockage: "SSD 500 Go",
+        budget: "350 – 500 €",
+        ideal: "Web, Office, mails, visioconférence",
+      },
+      "800-1500": {
+        nom: "Bureautique Confort",
+        cpu: "Ryzen 5 7600",
+        gpu: "RTX 3060 (double écran confort)",
+        ram: "32 Go DDR5",
+        stockage: "SSD 1 To NVMe",
+        budget: "700 – 1 000 €",
+        ideal: "Multitâche, double écran, légère création",
+      },
+      "1500-3000": {
+        nom: "Bureautique Pro",
+        cpu: "Ryzen 7 7700X",
+        gpu: "RTX 4060 Ti",
+        ram: "32 Go DDR5",
+        stockage: "SSD 2 To NVMe",
+        budget: "1 200 – 1 800 €",
+        ideal: "Développement, CAO légère, triple écran",
+      },
+      plus3000: {
+        nom: "Bureautique Expert",
+        cpu: "Ryzen 9 7900X",
+        gpu: "RTX 4070",
+        ram: "64 Go DDR5",
+        stockage: "SSD 4 To NVMe",
+        budget: "2 000 – 3 000 €",
+        ideal: "Développement intensif, virtualisation, serveur local",
+      },
+    },
+    creation: {
+      moins800: {
+        nom: "Création Débutant",
+        cpu: "Ryzen 5 5600X",
+        gpu: "RTX 3060 12 Go",
+        ram: "32 Go DDR4",
+        stockage: "SSD 1 To NVMe",
+        budget: "700 – 900 €",
+        ideal: "Blender entrée de gamme, montage HD",
+      },
+      "800-1500": {
+        nom: "Création Intermédiaire",
+        cpu: "Ryzen 7 7700X",
+        gpu: "RTX 4060 Ti 16 Go",
+        ram: "32 Go DDR5",
+        stockage: "SSD 2 To NVMe",
+        budget: "1 200 – 1 600 €",
+        ideal: "Blender, DaVinci Resolve 4K, After Effects",
+      },
+      "1500-3000": {
+        nom: "Création Pro",
+        populaire: true,
+        cpu: "Ryzen 9 7900X",
+        gpu: "RTX 4070 Ti Super",
+        ram: "64 Go DDR5",
+        stockage: "SSD 2 To + HDD 4 To",
+        budget: "2 000 – 2 800 €",
+        ideal: "Rendu 3D pro, effets visuels, vidéo RAW",
+      },
+      plus3000: {
+        nom: "Workstation Expert",
+        cpu: "Ryzen 9 7950X",
+        gpu: "RTX 4090 24 Go",
+        ram: "128 Go DDR5",
+        stockage: "SSD 4 To NVMe",
+        budget: "4 000 – 6 000 €",
+        ideal: "Production AAA, IA locale, simulation",
+      },
+    },
+  };
+
+  /* =====================================================
+     ÉTAT
+  ===================================================== */
+  let usageChoisi  = "";
+  let budgetChoisi = "";
+
+  /* =====================================================
+     HELPERS — navigation entre étapes
+  ===================================================== */
+  function afficherEtape(n: number) {
+    [1, 2, 3].forEach((i) => {
+      const el = document.getElementById(`etape${i}`);
+      if (el) el.hidden = i !== n;
+
+      const ind = document.getElementById(`step-ind-${i}`);
+      if (ind) {
+        ind.classList.toggle("stepper__etape--actif",    i === n);
+        ind.classList.toggle("stepper__etape--complete", i < n);
+        ind.setAttribute("aria-current", i === n ? "step" : "false");
+      }
+    });
+    /* Scroll vers le haut du configurateur */
+    document.getElementById("etape" + n)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  /* =====================================================
+     ÉTAPE 1 — sélection usage
+  ===================================================== */
+  document.querySelectorAll<HTMLButtonElement>("[data-usage]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      usageChoisi = btn.dataset.usage ?? "";
+      /* Feedback visuel momentané */
+      btn.classList.add("choix-btn--selectionne");
+      setTimeout(() => afficherEtape(2), 200);
+    });
+  });
+
+  /* =====================================================
+     ÉTAPE 2 — sélection budget
+  ===================================================== */
+  document.querySelectorAll<HTMLButtonElement>("[data-budget]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      budgetChoisi = btn.dataset.budget ?? "";
+      btn.classList.add("choix-btn--selectionne");
+      setTimeout(() => {
+        afficherResultat();
+        afficherEtape(3);
+      }, 200);
+    });
+  });
+
+  /* =====================================================
+     ÉTAPE 3 — affichage résultat
+  ===================================================== */
+  function afficherResultat() {
+    const config = configs[usageChoisi]?.[budgetChoisi];
+    const carte  = document.getElementById("carteResultat");
+    if (!config || !carte) return;
+
+    carte.innerHTML = `
+      <div class="resultat__entete">
+        <h3 class="resultat__nom">${config.nom}</h3>
+        ${config.populaire ? '<span class="resultat__badge">⭐ Recommandé</span>' : ""}
+      </div>
+      <ul class="resultat__specs">
+        <li class="resultat__spec">
+          <span class="spec__icone" aria-hidden="true">🖥️</span>
+          <span class="spec__cle">Processeur</span>
+          <span class="spec__val">${config.cpu}</span>
+        </li>
+        <li class="resultat__spec">
+          <span class="spec__icone" aria-hidden="true">🎮</span>
+          <span class="spec__cle">Carte graphique</span>
+          <span class="spec__val">${config.gpu}</span>
+        </li>
+        <li class="resultat__spec">
+          <span class="spec__icone" aria-hidden="true">💾</span>
+          <span class="spec__cle">Mémoire vive</span>
+          <span class="spec__val">${config.ram}</span>
+        </li>
+        <li class="resultat__spec">
+          <span class="spec__icone" aria-hidden="true">💿</span>
+          <span class="spec__cle">Stockage</span>
+          <span class="spec__val">${config.stockage}</span>
+        </li>
+      </ul>
+      <div class="resultat__budget">
+        <span class="resultat__budget-label">Budget estimé composants</span>
+        <span class="resultat__budget-val">${config.budget}</span>
+      </div>
+      <div class="resultat__ideal">
+        <span aria-hidden="true">✓</span>
+        <span>Idéal pour : <strong>${config.ideal}</strong></span>
+      </div>
+      <p class="resultat__mention">Prix indicatifs — mis à jour régulièrement selon le marché.</p>
+    `;
+  }
+
+  /* =====================================================
+     BOUTONS RETOUR
+  ===================================================== */
+  document.getElementById("btnRetour1")?.addEventListener("click", () => {
+    /* Retire le feedback visuel des boutons usage */
+    document.querySelectorAll("[data-usage]").forEach((b) => b.classList.remove("choix-btn--selectionne"));
+    afficherEtape(1);
+  });
+
+  document.getElementById("btnRetour2")?.addEventListener("click", () => {
+    document.querySelectorAll("[data-budget]").forEach((b) => b.classList.remove("choix-btn--selectionne"));
+    afficherEtape(2);
+  });
+
+  /* =====================================================
+     RECOMMENCER
+  ===================================================== */
+  document.getElementById("btnRecommencer")?.addEventListener("click", () => {
+    usageChoisi  = "";
+    budgetChoisi = "";
+    document.querySelectorAll(".choix-btn").forEach((b) => b.classList.remove("choix-btn--selectionne"));
+    afficherEtape(1);
+  });
+</script>
+
+
+<style>
+  /* =====================
+     Hero
+  ===================== */
+  .page-hero {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--couleur-bordure);
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(13,211,178,0.07) 0%, transparent 70%),
+                var(--couleur-fond);
+  }
+
+  .page-hero__titre {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-hero__sous-titre {
+    color: var(--couleur-texte-secondaire);
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  /* =====================
+     Section configurateur
+  ===================== */
+  .config-section {
+    padding: var(--padding-section);
+    background-color: var(--couleur-fond);
+    min-height: 60vh;
+  }
+
+  .config__wrap {
+    max-width: 820px;
+  }
+
+  /* =====================
+     Stepper
+  ===================== */
+  .stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .stepper__etape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .stepper__cercle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--couleur-surface-2);
+    border: 2px solid var(--couleur-bordure);
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s, border-color 0.25s, color 0.25s;
+  }
+
+  .stepper__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--couleur-texte-secondaire);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.25s;
+  }
+
+  /* Étape active */
+  .stepper__etape--actif .stepper__cercle {
+    background-color: var(--couleur-rouge);
+    border-color: var(--couleur-rouge);
+    color: #fff;
+    box-shadow: 0 0 14px rgba(13, 211, 178, 0.4);
+  }
+
+  .stepper__etape--actif .stepper__label {
+    color: var(--couleur-rouge);
+  }
+
+  /* Étape complète */
+  .stepper__etape--complete .stepper__cercle {
+    background-color: rgba(13, 211, 178, 0.15);
+    border-color: var(--couleur-rouge);
+    color: var(--couleur-rouge);
+  }
+
+  .stepper__etape--complete .stepper__label {
+    color: var(--couleur-rouge);
+  }
+
+  /* Trait de connexion */
+  .stepper__trait {
+    flex: 1;
+    height: 2px;
+    background-color: var(--couleur-bordure);
+    margin: 0 0.5rem;
+    margin-bottom: 1.2rem;
+    max-width: 80px;
+  }
+
+  /* =====================
+     Étape générique
+  ===================== */
+  .etape[hidden] { display: none; }
+
+  .etape__titre {
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .etape__sous-titre {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 1.75rem;
+  }
+
+  /* =====================
+     Grille de choix
+  ===================== */
+  .choix-grille {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .choix-grille--budget {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* =====================
+     Bouton de choix
+  ===================== */
+  .choix-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.75rem 1.25rem;
+    background-color: var(--couleur-surface);
+    border: 2px solid var(--couleur-bordure);
+    border-radius: var(--rayon-grand);
+    cursor: pointer;
+    font-family: var(--police);
+    text-align: center;
+    color: var(--couleur-texte-secondaire);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+
+  .choix-btn:hover {
+    border-color: rgba(13, 211, 178, 0.45);
+    background-color: rgba(13, 211, 178, 0.04);
+    color: var(--couleur-texte);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .choix-btn--selectionne,
+  .choix-btn:active {
+    border-color: var(--couleur-rouge);
+    background-color: rgba(13, 211, 178, 0.1);
+    color: var(--couleur-rouge);
+    transform: scale(0.98);
+  }
+
+  .choix-btn__icone {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .choix-btn__label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--couleur-texte);
+  }
+
+  .choix-btn--selectionne .choix-btn__label {
+    color: var(--couleur-rouge);
+  }
+
+  .choix-btn__desc {
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.4;
+  }
+
+  /* Budget buttons — variante */
+  .choix-btn--budget {
+    padding: 1.5rem 1rem;
+  }
+
+  .choix-btn__prix {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--couleur-texte);
+    line-height: 1.2;
+  }
+
+  .choix-btn--selectionne .choix-btn__prix {
+    color: var(--couleur-rouge);
+  }
+
+  /* =====================
+     Bouton retour
+  ===================== */
+  .btn-retour {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: none;
+    color: var(--couleur-texte-secondaire);
+    font-family: var(--police);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-retour:hover {
+    color: var(--couleur-rouge);
+  }
+
+  /* =====================
+     Carte résultat
+     (:global car HTML injecté via innerHTML)
+  ===================== */
+  .resultat :global(.resultat__entete) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .resultat :global(.resultat__nom) {
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    font-weight: 800;
+  }
+
+  .resultat :global(.resultat__badge) {
+    background-color: rgba(13, 211, 178, 0.12);
+    border: 1px solid rgba(13, 211, 178, 0.35);
+    color: var(--couleur-rouge);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* Specs */
+  .resultat :global(.resultat__specs) {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .resultat :global(.resultat__spec) {
+    display: grid;
+    grid-template-columns: 1.5rem 8rem 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .resultat :global(.spec__icone) {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .resultat :global(.spec__cle) {
+    font-weight: 700;
+    color: var(--couleur-texte-secondaire);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .resultat :global(.spec__val) {
+    color: var(--couleur-texte);
+  }
+
+  /* Budget estimé */
+  .resultat :global(.resultat__budget) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.1rem 1.25rem;
+    background-color: rgba(13, 211, 178, 0.06);
+    border: 1px solid rgba(13, 211, 178, 0.2);
+    border-radius: var(--rayon);
+    margin-bottom: 1rem;
+  }
+
+  .resultat :global(.resultat__budget-label) {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--couleur-texte-secondaire);
+  }
+
+  .resultat :global(.resultat__budget-val) {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--couleur-rouge);
+    letter-spacing: -0.02em;
+  }
+
+  /* Idéal pour */
+  .resultat :global(.resultat__ideal) {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.875rem;
+    color: var(--couleur-texte-secondaire);
+    margin-bottom: 0.75rem;
+  }
+
+  .resultat :global(.resultat__ideal > span:first-child) {
+    color: var(--couleur-rouge);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .resultat :global(.resultat__ideal strong) {
+    color: var(--couleur-texte);
+  }
+
+  .resultat :global(.resultat__mention) {
+    font-size: 0.78rem;
+    color: var(--couleur-texte-secondaire);
+    font-style: italic;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--couleur-bordure);
+    line-height: 1.6;
+  }
+
+  /* Specs — desktop 2 colonnes */
+  @media (min-width: 580px) {
+    .resultat :global(.resultat__specs) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+  /* Boutons d'action */
+  .resultat__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .resultat__btn-devis {
+    font-size: 1rem;
+    padding: 0.9rem 2rem;
+  }
+
+  .resultat__btn-reset {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+
+  /* =====================
+     Tablette (≥ 580px)
+  ===================== */
+  @media (min-width: 580px) {
+    .choix-grille {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .resultat__specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+  }
+
+
+  /* =====================
+     Desktop (≥ 768px)
+  ===================== */
+  @media (min-width: 768px) {
+    .stepper__trait {
+      max-width: 120px;
+    }
+
+    .choix-grille--budget {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
