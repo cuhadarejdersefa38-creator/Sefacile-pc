@@ -406,7 +406,9 @@ import Footer from "../components/Footer.astro";
     e.preventDefault();
 
     const data = new FormData(form);
-    const encoded = new URLSearchParams(data as unknown as Record<string, string>).toString();
+    const encoded = new URLSearchParams(
+      Array.from(data.entries()).map(([k, v]) => [k, v.toString()])
+    ).toString();
 
     try {
       const res = await fetch("/", {

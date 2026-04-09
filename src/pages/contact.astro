@@ -240,7 +240,9 @@ import Footer from "../components/Footer.astro";
 
     /* Encode les données au format URL (attendu par Netlify Forms) */
     const data = new FormData(form);
-    const encoded = new URLSearchParams(data as unknown as Record<string, string>).toString();
+    const encoded = new URLSearchParams(
+      Array.from(data.entries()).map(([k, v]) => [k, v.toString()])
+    ).toString();
 
     try {
       const res = await fetch("/", {
