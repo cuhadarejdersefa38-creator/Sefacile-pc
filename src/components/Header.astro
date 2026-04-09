@@ -18,10 +18,13 @@ const liens = [
 
     <!-- Logo -->
     <a href="/" class="header__logo" aria-label="Sefacile PC — Accueil">
-      <span class="logo__icone" aria-hidden="true">⚡</span>
-      <span class="logo__texte">
-        Sefacile<span class="logo__accent">PC</span>
-      </span>
+      <img
+        src="/logo.svg"
+        alt="Sefacile PC - Montage PC Gaming Isère"
+        class="header__logo-img"
+        width="auto"
+        height="80"
+      />
     </a>
 
     <!-- Bouton menu burger (mobile) -->
@@ -102,7 +105,7 @@ const liens = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 88px;
   }
 
   /* =====================
@@ -111,19 +114,19 @@ const liens = [
   .header__logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  .logo__icone {
-    font-size: 1.4rem;
+  .header__logo-img {
+    height: 80px;
+    width: auto;
+    display: block;
+    /* Légère transition au hover pour feedback visuel */
+    transition: opacity 0.2s;
   }
 
-  .logo__accent {
-    color: var(--couleur-rouge);
+  .header__logo:hover .header__logo-img {
+    opacity: 0.85;
   }
 
   /* =====================

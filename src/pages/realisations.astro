@@ -127,7 +127,8 @@ const realisations = [
 
         <!-- Message aucun résultat -->
         <p class="galerie__vide" id="messageVide" hidden aria-live="polite">
-          Aucune réalisation dans cette catégorie pour le moment.
+          Notre atelier est en cours d'installation à Corbelin — les premières réalisations photos arrivent très bientôt !
+          En attendant, <a href="/contact" class="galerie__vide-lien">contactez-nous pour discuter de votre projet</a>.
         </p>
 
         <!-- Galerie -->
@@ -412,7 +413,14 @@ const realisations = [
     text-align: center;
     color: var(--couleur-texte-secondaire);
     font-size: 0.95rem;
+    line-height: 1.7;
     padding: 3rem 0;
+  }
+
+  .galerie__vide-lien {
+    color: var(--couleur-rouge);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   /* =====================
