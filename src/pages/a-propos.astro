@@ -99,22 +99,22 @@ import Footer from "../components/Footer.astro";
         <ul class="chiffres__grille">
 
           <li class="chiffre">
-            <span class="chiffre__valeur">5</span>
+            <span class="chiffre__valeur" data-target="5" data-suffix="">0</span>
             <span class="chiffre__label">PC montés</span>
           </li>
 
           <li class="chiffre">
-            <span class="chiffre__valeur">5</span>
+            <span class="chiffre__valeur" data-target="5" data-suffix="">0</span>
             <span class="chiffre__label">Clients satisfaits</span>
           </li>
 
           <li class="chiffre">
-            <span class="chiffre__valeur">3+</span>
+            <span class="chiffre__valeur" data-target="3" data-suffix="+">0</span>
             <span class="chiffre__label">Ans d'expérience</span>
           </li>
 
           <li class="chiffre">
-            <span class="chiffre__valeur">38</span>
+            <span class="chiffre__valeur" data-target="38" data-suffix="">0</span>
             <span class="chiffre__label">Isère & alentours</span>
           </li>
 
@@ -271,6 +271,43 @@ import Footer from "../components/Footer.astro";
 </Layout>
 
 
+<!-- Script : compteurs animés (Intersection Observer) -->
+<script>
+  const compteurs = document.querySelectorAll<HTMLElement>(".chiffre__valeur[data-target]");
+
+  const animer = (el: HTMLElement) => {
+    const cible  = parseInt(el.dataset.target ?? "0", 10);
+    const suffixe = el.dataset.suffix ?? "";
+    const duree  = 1500; // ms
+    const debut  = performance.now();
+
+    const tick = (maintenant: number) => {
+      const progres = Math.min((maintenant - debut) / duree, 1);
+      /* easing easeOutCubic */
+      const ease = 1 - Math.pow(1 - progres, 3);
+      el.textContent = Math.round(ease * cible) + suffixe;
+      if (progres < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animer(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  compteurs.forEach((el) => observer.observe(el));
+</script>
+
+
 <style>
   /* =====================
      Accessibilité
@@ -291,7 +328,7 @@ import Footer from "../components/Footer.astro";
     padding: 3.5rem 0 3rem;
     text-align: center;
     border-bottom: 1px solid var(--couleur-bordure);
-    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(13,211,178,0.07) 0%, transparent 70%),
                 var(--couleur-fond);
   }
 
@@ -486,7 +523,7 @@ import Footer from "../components/Footer.astro";
   }
 
   .valeur:hover {
-    border-color: rgba(230,57,70,0.35);
+    border-color: rgba(13,211,178,0.35);
   }
 
   .valeur__icone {
@@ -551,7 +588,7 @@ import Footer from "../components/Footer.astro";
   }
 
   .expertise__item:hover {
-    background-color: rgba(230,57,70,0.04);
+    background-color: rgba(13,211,178,0.04);
   }
 
   .expertise__icone {
@@ -578,7 +615,7 @@ import Footer from "../components/Footer.astro";
   ===================== */
   .cta-final {
     padding: var(--padding-section);
-    background: linear-gradient(135deg, rgba(230,57,70,0.1) 0%, transparent 60%),
+    background: linear-gradient(135deg, rgba(13,211,178,0.1) 0%, transparent 60%),
                 var(--couleur-fond);
     border-top: 1px solid var(--couleur-bordure);
   }

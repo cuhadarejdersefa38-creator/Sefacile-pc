@@ -271,7 +271,7 @@ import Footer from "../components/Footer.astro";
   ===================== */
   .page-hero {
     padding: 3.5rem 0 3rem;
-    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(230, 57, 70, 0.07) 0%, transparent 70%),
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(13, 211, 178, 0.07) 0%, transparent 70%),
                 var(--couleur-fond);
     text-align: center;
     border-bottom: 1px solid var(--couleur-bordure);
@@ -308,6 +308,10 @@ import Footer from "../components/Footer.astro";
   /* =====================
      Message de succès
   ===================== */
+  /* Cache le message et le formulaire — empêche display:flex d'écraser l'attribut hidden */
+  .succes[hidden] { display: none; }
+  .formulaire[hidden] { display: none; }
+
   .succes {
     display: flex;
     align-items: flex-start;
@@ -391,7 +395,7 @@ import Footer from "../components/Footer.astro";
 
   .champ__input:focus {
     border-color: var(--couleur-rouge);
-    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+    box-shadow: 0 0 0 3px rgba(13, 211, 178, 0.15);
   }
 
   /* Select : flèche personnalisée */
@@ -455,8 +459,8 @@ import Footer from "../components/Footer.astro";
   }
 
   .info-bloc--tel {
-    border-color: rgba(230, 57, 70, 0.35);
-    background-color: rgba(230, 57, 70, 0.04);
+    border-color: rgba(13, 211, 178, 0.35);
+    background-color: rgba(13, 211, 178, 0.04);
   }
 
   .info-bloc__label {

@@ -1,5 +1,5 @@
 ---
-/* Page Tarifs — Story 2.4 */
+/* Page Tarifs — refonte prestations réelles */
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -7,212 +7,176 @@ import Footer from "../components/Footer.astro";
 
 <Layout
   title="Tarifs Montage PC Isère | Sefacile PC"
-  description="Tarifs clairs pour le montage PC en Isère. PC Gaming dès 800€, Workstation dès 1500€. Devis gratuit sans engagement."
+  description="Montage PC sur-mesure à 150 € en Isère. Tu achètes tes composants, je monte, teste et te livre clé en main à Corbelin. Devis gratuit."
 >
   <Header />
 
   <main>
 
     <!-- ================================
-         1. HERO PAGE
+         1. HERO
     ================================= -->
     <section class="page-hero">
       <div class="conteneur">
-        <h1 class="page-hero__titre">Tarifs</h1>
+        <h1 class="page-hero__titre">Des prestations claires,<br />des tarifs honnêtes</h1>
         <p class="page-hero__sous-titre">
-          Des configurations sur-mesure pour chaque budget
+          Pas de surprise, pas de marge sur les pièces — tu paies le montage, pas les composants.
         </p>
       </div>
     </section>
 
 
     <!-- ================================
-         2. GRILLE PC GAMING
+         2. PRESTATION PRINCIPALE
     ================================= -->
-    <section class="tarifs-section" aria-labelledby="titreGaming">
+    <section class="prestations" aria-labelledby="titrePrestations">
       <div class="conteneur">
 
-        <div class="section__entete">
-          <span class="section__icone" aria-hidden="true">🎮</span>
-          <h2 class="section__titre" id="titreGaming">PC Gaming</h2>
-          <p class="section__sous-titre">Assemblage sur-mesure pour joueurs</p>
-        </div>
+        <!-- Carte principale : Montage -->
+        <article class="carte-principale" aria-labelledby="titreMontage">
+          <div class="carte-principale__badge">Notre prestation phare</div>
 
-        <div class="tarifs__grille">
-
-          <!-- Entrée de gamme -->
-          <article class="carte-tarif">
-            <div class="carte-tarif__entete">
-              <h3 class="carte-tarif__nom">Entrée de gamme</h3>
-              <div class="carte-tarif__prix">
-                <span class="prix__valeur">800 € – 1 200 €</span>
-              </div>
-            </div>
-            <ul class="carte-tarif__liste">
-              <li>Jeux en 1080p, 60 fps stables</li>
-              <li>Usage bureautique & web</li>
-              <li>Jeux e-sport (Valorant, CS2, Fortnite)</li>
-              <li>Composants fiables longue durée</li>
-            </ul>
-            <a href="/contact" class="carte-tarif__btn btn-secondaire">
-              Demander un devis
-            </a>
-          </article>
-
-          <!-- Milieu de gamme — mis en avant -->
-          <article class="carte-tarif carte-tarif--vedette">
-            <div class="carte-tarif__badge">⭐ Le plus demandé</div>
-            <div class="carte-tarif__entete">
-              <h3 class="carte-tarif__nom">Milieu de gamme</h3>
-              <div class="carte-tarif__prix">
-                <span class="prix__valeur">1 200 € – 2 000 €</span>
-              </div>
-            </div>
-            <ul class="carte-tarif__liste">
-              <li>Jeux en 1440p, 144 fps</li>
-              <li>Streaming simultané sans perte de perf</li>
-              <li>AAA récents en ultra</li>
-              <li>Évolutif et pérenne</li>
-            </ul>
-            <a href="/contact" class="carte-tarif__btn btn-principal">
-              Demander un devis
-            </a>
-          </article>
-
-          <!-- Haut de gamme -->
-          <article class="carte-tarif">
-            <div class="carte-tarif__entete">
-              <h3 class="carte-tarif__nom">Haut de gamme</h3>
-              <div class="carte-tarif__prix">
-                <span class="prix__valeur">2 000 € – 2 500 €</span>
-                <span class="prix__plus">+</span>
-              </div>
-            </div>
-            <ul class="carte-tarif__liste">
-              <li>4K gaming, 165 fps+</li>
-              <li>Ultra settings sans compromis</li>
-              <li>Watercooling & RGB maîtrisé</li>
-              <li>Meilleure expérience possible</li>
-            </ul>
-            <a href="/contact" class="carte-tarif__btn btn-secondaire">
-              Demander un devis
-            </a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ================================
-         3. GRILLE WORKSTATION 3D
-    ================================= -->
-    <section class="tarifs-section tarifs-section--alt" aria-labelledby="titreWorkstation">
-      <div class="conteneur">
-
-        <div class="section__entete">
-          <span class="section__icone" aria-hidden="true">🖥️</span>
-          <h2 class="section__titre" id="titreWorkstation">Workstation 3D</h2>
-          <p class="section__sous-titre">Stations de travail pour professionnels</p>
-        </div>
-
-        <div class="tarifs__grille">
-
-          <!-- Studio -->
-          <article class="carte-tarif">
-            <div class="carte-tarif__entete">
-              <h3 class="carte-tarif__nom">Studio</h3>
-              <div class="carte-tarif__prix">
-                <span class="prix__valeur">1 500 € – 2 500 €</span>
-              </div>
-            </div>
-            <ul class="carte-tarif__liste">
-              <li>Modélisation 3D (Blender, C4D)</li>
-              <li>Montage vidéo HD & Full HD</li>
-              <li>Graphisme & illustration</li>
-              <li>Idéal indépendants & étudiants</li>
-            </ul>
-            <a href="/contact" class="carte-tarif__btn btn-secondaire">
-              Demander un devis
-            </a>
-          </article>
-
-          <!-- Professionnel — mis en avant -->
-          <article class="carte-tarif carte-tarif--vedette">
-            <div class="carte-tarif__badge">⭐ Recommandé</div>
-            <div class="carte-tarif__entete">
-              <h3 class="carte-tarif__nom">Professionnel</h3>
-              <div class="carte-tarif__prix">
-                <span class="prix__valeur">2 500 € – 4 000 €</span>
-              </div>
-            </div>
-            <ul class="carte-tarif__liste">
-              <li>Rendu 3D GPU accéléré</li>
-              <li>Effets visuels & compositing</li>
-              <li>Montage & étalonnage vidéo 4K</li>
-              <li>RAM ECC optionnelle</li>
-            </ul>
-            <a href="/contact" class="carte-tarif__btn btn-principal">
-              Demander un devis
-            </a>
-          </article>
-
-          <!-- Expert -->
-          <article class="carte-tarif">
-            <div class="carte-tarif__entete">
-              <h3 class="carte-tarif__nom">Expert</h3>
-              <div class="carte-tarif__prix">
-                <span class="prix__valeur">4 000 € – 5 000 €</span>
-                <span class="prix__plus">+</span>
-              </div>
-            </div>
-            <ul class="carte-tarif__liste">
-              <li>Production AAA & VFX</li>
-              <li>Simulation physique & IA locale</li>
-              <li>CPU Threadripper / GPU Quadro</li>
-              <li>Studios de production professionnels</li>
-            </ul>
-            <a href="/contact" class="carte-tarif__btn btn-secondaire">
-              Demander un devis
-            </a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ================================
-         4. MAIN D'ŒUVRE
-    ================================= -->
-    <section class="main-oeuvre" aria-labelledby="titreMainOeuvre">
-      <div class="conteneur">
-        <div class="main-oeuvre__encadre">
-
-          <div class="main-oeuvre__gauche">
-            <span class="main-oeuvre__icone" aria-hidden="true">🔧</span>
+          <div class="carte-principale__entete">
+            <div class="carte-principale__icone" aria-hidden="true">🔧</div>
             <div>
-              <h2 class="main-oeuvre__titre" id="titreMainOeuvre">Forfait montage</h2>
-              <p class="main-oeuvre__prix">80 € – 150 €</p>
-              <p class="main-oeuvre__detail">Selon la complexité du build (câble management, watercooling, nombre de composants)</p>
+              <h2 class="carte-principale__titre" id="titreMontage">Montage PC sur-mesure</h2>
+              <div class="carte-principale__prix">150 <span class="prix__devise">€</span></div>
             </div>
           </div>
 
-          <div class="main-oeuvre__mention">
-            <span class="mention__icone" aria-hidden="true">ℹ️</span>
-            <p>
-              Les prix des composants varient selon le marché au moment de la commande.
-              <strong> Devis gratuit et sans engagement</strong> — le tarif final est fixé avant tout achat.
-            </p>
+          <ul class="inclus">
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Montage complet du PC
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Cable management soigné
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Installation Windows
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Mise à jour système et composants
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Test de stabilité OCCT
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Conseil et validation de ta config avant achat
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Livraison en main propre en Isère
+            </li>
+          </ul>
+
+          <a href="/contact" class="btn-principal carte-principale__cta">
+            Demander un devis gratuit
+          </a>
+
+          <p class="carte-principale__mention">
+            Le prix des composants n'est pas inclus — tu achètes tes pièces, je m'occupe du reste.
+          </p>
+        </article>
+
+
+        <!-- Carte secondaire : Entretien -->
+        <article class="carte-secondaire" aria-labelledby="titreEntretien">
+          <div class="carte-secondaire__entete">
+            <div class="carte-secondaire__icone" aria-hidden="true">🧹</div>
+            <div>
+              <h2 class="carte-secondaire__titre" id="titreEntretien">Entretien PC</h2>
+              <div class="carte-secondaire__prix">À partir de <strong>30 €</strong></div>
+            </div>
           </div>
 
-        </div>
+          <ul class="inclus inclus--secondaire">
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Dépoussiérage complet
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Remplacement pâte thermique CPU et GPU
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Nettoyage des ventilateurs
+            </li>
+            <li class="inclus__item">
+              <span class="inclus__coche" aria-hidden="true">✓</span>
+              Vérification générale
+            </li>
+          </ul>
+
+          <p class="carte-secondaire__mention">Tarif selon l'état et le temps nécessaire</p>
+
+          <a href="/contact" class="btn-secondaire carte-secondaire__cta">
+            Me contacter
+          </a>
+        </article>
+
       </div>
     </section>
 
 
     <!-- ================================
-         5. FAQ
+         3. COMMENT ÇA MARCHE
+    ================================= -->
+    <section class="process" aria-labelledby="titreProcess">
+      <div class="conteneur">
+
+        <div class="section__entete">
+          <h2 class="section__titre" id="titreProcess">Comment ça marche ?</h2>
+        </div>
+
+        <ol class="process__etapes">
+
+          <li class="etape">
+            <div class="etape__numero" aria-hidden="true">1</div>
+            <div class="etape__contenu">
+              <h3 class="etape__titre">On discute de ta config</h3>
+              <p class="etape__texte">
+                Tu m'envoies tes idées ou ton budget,
+                je valide ou optimise ta sélection de composants.
+              </p>
+            </div>
+          </li>
+
+          <li class="etape">
+            <div class="etape__numero" aria-hidden="true">2</div>
+            <div class="etape__contenu">
+              <h3 class="etape__titre">Tu achètes tes pièces</h3>
+              <p class="etape__texte">
+                Une fois la config validée, tu commandes
+                tes composants où tu veux au meilleur prix.
+              </p>
+            </div>
+          </li>
+
+          <li class="etape">
+            <div class="etape__numero" aria-hidden="true">3</div>
+            <div class="etape__contenu">
+              <h3 class="etape__titre">Je monte ton PC</h3>
+              <p class="etape__texte">
+                Tu déposes tes pièces à mon atelier à Corbelin,
+                je monte, teste et te livre ton PC clé en main.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ================================
+         4. FAQ
     ================================= -->
     <section class="faq" aria-labelledby="titreFaq">
       <div class="conteneur">
@@ -225,116 +189,91 @@ import Footer from "../components/Footer.astro";
 
           <div class="faq__item">
             <dt class="faq__question">
-              <button
-                class="faq__btn"
-                aria-expanded="false"
-                aria-controls="faq1"
-              >
-                Les composants sont-ils garantis ?
+              <button class="faq__btn" aria-expanded="false" aria-controls="faq1">
+                Est-ce que vous vendez les composants ?
                 <span class="faq__chevron" aria-hidden="true">▾</span>
               </button>
             </dt>
             <dd class="faq__reponse" id="faq1" hidden>
-              Oui, tous les composants sont neufs et achetés chez des revendeurs agréés.
-              Ils bénéficient de la garantie constructeur complète (2 à 5 ans selon les pièces).
-              En cas de défaut, je m'occupe des démarches avec le fournisseur.
+              Non, Sefacile PC propose uniquement le montage et le conseil.
+              Tu achètes tes pièces où tu veux, ce qui te garantit
+              les meilleurs prix du marché et la garantie constructeur à ton nom.
             </dd>
           </div>
 
           <div class="faq__item">
             <dt class="faq__question">
-              <button
-                class="faq__btn"
-                aria-expanded="false"
-                aria-controls="faq2"
-              >
-                Livrez-vous en dehors de l'Isère ?
-                <span class="faq__chevron" aria-hidden="true">▾</span>
-              </button>
-            </dt>
-            <dd class="faq__reponse" id="faq2" hidden>
-              Mon secteur principal est l'Isère (Grenoble, Voiron, Bourgoin-Jallieu et alentours).
-              Pour les départements limitrophes, n'hésitez pas à me contacter —
-              une livraison sécurisée ou un déplacement peut être envisagé selon la distance.
-            </dd>
-          </div>
-
-          <div class="faq__item">
-            <dt class="faq__question">
-              <button
-                class="faq__btn"
-                aria-expanded="false"
-                aria-controls="faq3"
-              >
+              <button class="faq__btn" aria-expanded="false" aria-controls="faq2">
                 Combien de temps prend un montage ?
                 <span class="faq__chevron" aria-hidden="true">▾</span>
               </button>
             </dt>
-            <dd class="faq__reponse" id="faq3" hidden>
-              Entre 2 et 5 jours ouvrés à partir de la réception des composants.
-              Ce délai inclut le montage, les tests de stabilité sur 24 h,
-              l'installation de Windows et des drivers. Les builds complexes (watercooling custom)
-              peuvent nécessiter un jour supplémentaire.
+            <dd class="faq__reponse" id="faq2" hidden>
+              En général 1 à 2 jours selon la complexité de la configuration.
+              Ce délai inclut le montage, les tests de stabilité OCCT,
+              l'installation de Windows et des drivers.
             </dd>
           </div>
 
           <div class="faq__item">
             <dt class="faq__question">
-              <button
-                class="faq__btn"
-                aria-expanded="false"
-                aria-controls="faq4"
-              >
-                Puis-je fournir mes propres composants ?
+              <button class="faq__btn" aria-expanded="false" aria-controls="faq3">
+                Vous intervenez où ?
+                <span class="faq__chevron" aria-hidden="true">▾</span>
+              </button>
+            </dt>
+            <dd class="faq__reponse" id="faq3" hidden>
+              Je suis basé à Corbelin en Isère. Tu déposes tes pièces à l'atelier
+              et je te livre en main propre. Je couvre Grenoble, Voiron,
+              Bourgoin-Jallieu et les communes alentour.
+            </dd>
+          </div>
+
+          <div class="faq__item">
+            <dt class="faq__question">
+              <button class="faq__btn" aria-expanded="false" aria-controls="faq4">
+                Est-ce que vous pouvez m'aider à choisir mes composants ?
                 <span class="faq__chevron" aria-hidden="true">▾</span>
               </button>
             </dt>
             <dd class="faq__reponse" id="faq4" hidden>
-              Oui, tout à fait. Dans ce cas, seul le forfait montage (80–150 €) s'applique.
-              Je vérifie la compatibilité de vos pièces avant de commencer et vous préviens
-              si quelque chose pose problème. Notez que je ne peux pas garantir les composants
-              que vous fournissez vous-même.
+              Oui ! C'est même inclus dans la prestation.
+              Je valide ta config avant que tu achètes pour éviter
+              les erreurs de compatibilité et t'assurer le meilleur rapport qualité/prix.
             </dd>
           </div>
 
           <div class="faq__item">
             <dt class="faq__question">
-              <button
-                class="faq__btn"
-                aria-expanded="false"
-                aria-controls="faq5"
-              >
-                Proposez-vous un SAV après livraison ?
+              <button class="faq__btn" aria-expanded="false" aria-controls="faq5">
+                Que se passe-t-il si une pièce est défectueuse ?
                 <span class="faq__chevron" aria-hidden="true">▾</span>
               </button>
             </dt>
             <dd class="faq__reponse" id="faq5" hidden>
-              Oui. Je reste disponible par téléphone ou email après la remise de votre PC.
-              En cas de problème matériel couvert par la garantie constructeur,
-              je vous accompagne dans les démarches. Pour un suivi renforcé,
-              n'hésitez pas à en parler lors de votre devis.
+              Les composants sont sous garantie constructeur à ton nom.
+              Je t'accompagne dans les démarches SAV si besoin.
             </dd>
           </div>
 
         </dl>
-
       </div>
     </section>
 
 
     <!-- ================================
-         6. CTA FINAL
+         5. CTA FINAL
     ================================= -->
     <section class="cta-final" aria-labelledby="titreCtaTarifs">
       <div class="conteneur cta-final__inner">
         <div>
-          <h2 class="cta-final__titre" id="titreCtaTarifs">Ces tarifs vous correspondent ?</h2>
+          <h2 class="cta-final__titre" id="titreCtaTarifs">Un projet en tête ?</h2>
           <p class="cta-final__sous-titre">
-            Demandez un devis personnalisé — je sélectionne les composants selon votre budget exact.
+            Dis-moi ce que tu veux faire — je te réponds sous 24 h avec un conseil personnalisé, sans engagement.
           </p>
         </div>
         <a href="/contact" class="btn-principal cta-final__btn">
-          Demander un devis gratuit
+          Discutons de ton projet
         </a>
       </div>
     </section>
@@ -377,18 +316,22 @@ import Footer from "../components/Footer.astro";
     padding: 3.5rem 0 3rem;
     text-align: center;
     border-bottom: 1px solid var(--couleur-bordure);
-    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
+    background: radial-gradient(ellipse 50% 40% at 50% 0%, rgba(13,211,178,0.07) 0%, transparent 70%),
                 var(--couleur-fond);
   }
 
   .page-hero__titre {
     font-size: clamp(1.8rem, 5vw, 2.8rem);
     margin-bottom: 0.75rem;
+    line-height: 1.2;
   }
 
   .page-hero__sous-titre {
     color: var(--couleur-texte-secondaire);
     font-size: 1rem;
+    max-width: 50ch;
+    margin-inline: auto;
+    line-height: 1.7;
   }
 
   /* =====================
@@ -399,216 +342,236 @@ import Footer from "../components/Footer.astro";
     margin-bottom: 2.5rem;
   }
 
-  .section__icone {
-    display: block;
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-  }
-
   .section__titre {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 0.4rem;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
   }
 
-  .section__sous-titre {
-    color: var(--couleur-texte-secondaire);
-    font-size: 0.95rem;
-  }
 
   /* =====================
-     Sections tarifs
+     Section prestations
   ===================== */
-  .tarifs-section {
+  .prestations {
     padding: var(--padding-section);
     background-color: var(--couleur-fond);
   }
 
-  .tarifs-section--alt {
-    background-color: var(--couleur-surface);
-  }
-
   /* =====================
-     Grille de cartes
+     Carte principale
   ===================== */
-  .tarifs__grille {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  /* =====================
-     Carte tarif
-  ===================== */
-  .carte-tarif {
+  .carte-principale {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--couleur-surface-2);
-    border: 1px solid var(--couleur-bordure);
+    background-color: var(--couleur-surface);
+    border: 2px solid rgba(13, 211, 178, 0.5);
     border-radius: var(--rayon-grand);
-    padding: 1.75rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .carte-tarif:hover {
-    border-color: rgba(230,57,70,0.35);
-    transform: translateY(-3px);
-  }
-
-  .carte-tarif--vedette {
-    border-color: var(--couleur-rouge);
+    padding: 2.5rem 2rem;
     box-shadow: var(--ombre-rouge);
+    max-width: 640px;
+    margin-inline: auto;
+    margin-bottom: 2rem;
   }
 
-  .carte-tarif__badge {
+  .carte-principale__badge {
     position: absolute;
-    top: -13px;
-    left: 1.75rem;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: var(--couleur-rouge);
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0.8rem;
+    padding: 0.25rem 1.1rem;
     border-radius: 999px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  .carte-tarif__entete {
-    margin-bottom: 1.25rem;
-  }
-
-  .carte-tarif__nom {
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .carte-tarif__prix {
+  .carte-principale__entete {
     display: flex;
-    align-items: baseline;
-    gap: 0.15rem;
-  }
-
-  .prix__valeur {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--couleur-rouge);
-    letter-spacing: -0.02em;
-  }
-
-  .prix__plus {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--couleur-rouge);
-  }
-
-  /* Liste des caractéristiques */
-  .carte-tarif__liste {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    flex: 1;
+    align-items: center;
+    gap: 1.25rem;
     margin-bottom: 1.75rem;
   }
 
-  .carte-tarif__liste li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.55rem;
-    font-size: 0.875rem;
-    color: var(--couleur-texte-secondaire);
-    line-height: 1.4;
-  }
-
-  .carte-tarif__liste li::before {
-    content: "›";
-    color: var(--couleur-rouge);
-    font-weight: 700;
-    font-size: 1rem;
+  .carte-principale__icone {
+    font-size: 2.5rem;
     flex-shrink: 0;
-    margin-top: -0.05rem;
   }
 
-  .carte-tarif__btn {
+  .carte-principale__titre {
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+  }
+
+  .carte-principale__prix {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--couleur-rouge);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .prix__devise {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .carte-principale__cta {
     display: block;
+    width: 100%;
     text-align: center;
-    margin-top: auto;
+    font-size: 1rem;
+    padding: 0.95rem;
+    margin-top: 1.75rem;
   }
 
+  .carte-principale__mention {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    text-align: center;
+    font-style: italic;
+  }
 
   /* =====================
-     Main d'œuvre
+     Carte secondaire
   ===================== */
-  .main-oeuvre {
-    padding: 3rem 0;
-    background-color: var(--couleur-fond);
-    border-top: 1px solid var(--couleur-bordure);
-  }
-
-  .main-oeuvre__encadre {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .carte-secondaire {
     background-color: var(--couleur-surface);
     border: 1px solid var(--couleur-bordure);
-    border-left: 4px solid var(--couleur-rouge);
     border-radius: var(--rayon-grand);
-    padding: 2rem;
+    padding: 1.75rem;
+    max-width: 640px;
+    margin-inline: auto;
   }
 
-  .main-oeuvre__gauche {
+  .carte-secondaire__entete {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
+    margin-bottom: 1.25rem;
   }
 
-  .main-oeuvre__icone {
+  .carte-secondaire__icone {
     font-size: 2rem;
     flex-shrink: 0;
   }
 
-  .main-oeuvre__titre {
-    font-size: 1.1rem;
+  .carte-secondaire__titre {
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
   }
 
-  .main-oeuvre__prix {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--couleur-rouge);
-    margin-bottom: 0.3rem;
-  }
-
-  .main-oeuvre__detail {
-    font-size: 0.85rem;
+  .carte-secondaire__prix {
+    font-size: 0.95rem;
     color: var(--couleur-texte-secondaire);
+  }
+
+  .carte-secondaire__prix strong {
+    color: var(--couleur-texte);
+    font-size: 1.1rem;
+  }
+
+  .carte-secondaire__mention {
+    font-size: 0.8rem;
+    color: var(--couleur-texte-secondaire);
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .carte-secondaire__cta {
+    display: inline-block;
+  }
+
+  /* =====================
+     Liste inclus
+  ===================== */
+  .inclus {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .inclus--secondaire {
+    gap: 0.55rem;
+  }
+
+  .inclus__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: var(--couleur-texte);
     line-height: 1.5;
   }
 
-  .main-oeuvre__mention {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-    background-color: rgba(255,255,255,0.03);
-    border: 1px solid var(--couleur-bordure);
-    border-radius: var(--rayon);
-    padding: 1rem 1.25rem;
-    font-size: 0.875rem;
+  .inclus--secondaire .inclus__item {
+    font-size: 0.9rem;
     color: var(--couleur-texte-secondaire);
-    line-height: 1.6;
   }
 
-  .mention__icone {
+  .inclus__coche {
+    color: var(--couleur-rouge);
+    font-weight: 700;
     font-size: 1rem;
     flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+
+  /* =====================
+     Section "Comment ça marche"
+  ===================== */
+  .process {
+    padding: var(--padding-section);
+    background-color: var(--couleur-surface);
+    border-top: 1px solid var(--couleur-bordure);
+  }
+
+  .process__etapes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .etape {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .etape__numero {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--couleur-rouge);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 0.1rem;
   }
 
-  .main-oeuvre__mention strong {
-    color: var(--couleur-texte);
+  .etape__titre {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .etape__texte {
+    font-size: 0.9rem;
+    color: var(--couleur-texte-secondaire);
+    line-height: 1.6;
   }
 
 
@@ -617,42 +580,37 @@ import Footer from "../components/Footer.astro";
   ===================== */
   .faq {
     padding: var(--padding-section);
-    background-color: var(--couleur-surface);
+    background-color: var(--couleur-fond);
     border-top: 1px solid var(--couleur-bordure);
   }
 
   .faq__liste {
+    max-width: 680px;
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
-    gap: 0;
-    max-width: 760px;
-    margin-inline: auto;
+    gap: 0.75rem;
+  }
+
+  .faq__item {
+    background-color: var(--couleur-surface);
     border: 1px solid var(--couleur-bordure);
     border-radius: var(--rayon-grand);
     overflow: hidden;
   }
 
-  .faq__item {
-    border-bottom: 1px solid var(--couleur-bordure);
-  }
-
-  .faq__item:last-child {
-    border-bottom: none;
-  }
-
   .faq__question {
-    /* dt reset */
     margin: 0;
   }
 
   .faq__btn {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    width: 100%;
-    padding: 1.25rem 1.5rem;
-    background: none;
+    padding: 1.1rem 1.5rem;
+    background: transparent;
     border: none;
     color: var(--couleur-texte);
     font-family: var(--police);
@@ -660,11 +618,11 @@ import Footer from "../components/Footer.astro";
     font-weight: 600;
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.15s;
+    transition: color 0.2s;
   }
 
   .faq__btn:hover {
-    background-color: rgba(255,255,255,0.03);
+    color: var(--couleur-rouge);
   }
 
   .faq__btn[aria-expanded="true"] {
@@ -672,9 +630,9 @@ import Footer from "../components/Footer.astro";
   }
 
   .faq__chevron {
-    font-size: 1rem;
     flex-shrink: 0;
-    transition: transform 0.25s;
+    font-size: 1rem;
+    transition: transform 0.2s;
   }
 
   .faq__btn[aria-expanded="true"] .faq__chevron {
@@ -682,16 +640,14 @@ import Footer from "../components/Footer.astro";
   }
 
   .faq__reponse {
-    padding: 0 1.5rem 1.25rem;
+    padding: 0 1.5rem 1.1rem;
     font-size: 0.9rem;
     color: var(--couleur-texte-secondaire);
     line-height: 1.7;
   }
 
-  /* Quand hidden est retiré */
-  .faq__reponse:not([hidden]) {
-    display: block;
-  }
+  /* Empêche display:block d'écraser l'attribut hidden */
+  .faq__reponse[hidden] { display: none; }
 
 
   /* =====================
@@ -699,8 +655,8 @@ import Footer from "../components/Footer.astro";
   ===================== */
   .cta-final {
     padding: var(--padding-section);
-    background: linear-gradient(135deg, rgba(230,57,70,0.1) 0%, transparent 60%),
-                var(--couleur-fond);
+    background: linear-gradient(135deg, rgba(13,211,178,0.1) 0%, transparent 60%),
+                var(--couleur-surface);
     border-top: 1px solid var(--couleur-bordure);
   }
 
@@ -720,32 +676,13 @@ import Footer from "../components/Footer.astro";
     color: var(--couleur-texte-secondaire);
     font-size: 1rem;
     line-height: 1.7;
+    max-width: 50ch;
   }
 
   .cta-final__btn {
     font-size: 1rem;
     padding: 0.9rem 2.25rem;
     flex-shrink: 0;
-  }
-
-
-  /* =====================
-     Tablette (≥ 640px)
-  ===================== */
-  @media (min-width: 640px) {
-    .tarifs__grille {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .main-oeuvre__encadre {
-      flex-direction: row;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .main-oeuvre__mention {
-      flex: 1;
-    }
   }
 
 
