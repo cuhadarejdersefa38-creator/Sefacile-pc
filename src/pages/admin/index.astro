@@ -1,0 +1,894 @@
+---
+/* Page Admin — espace privé Sefacile PC
+   Protection : configurer un mot de passe dans
+   Netlify → Site settings → Access control → Visitor access → Password protection
+*/
+---
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Espace Admin — Sefacile PC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ==============================
+       ÉCRAN DE CONNEXION
+  =============================== -->
+  <div id="ecranConnexion" class="ecran-connexion">
+    <div class="login-carte">
+      <div class="login-carte__header">
+        <span class="login-carte__icone">🔒</span>
+        <h1 class="login-carte__titre">Espace Admin</h1>
+        <p class="login-carte__sous-titre">Sefacile PC — Accès restreint</p>
+      </div>
+
+      <form id="formLogin" class="login-form">
+        <div class="champ">
+          <label class="champ__label" for="motDePasse">Mot de passe admin</label>
+          <input
+            class="champ__input"
+            type="password"
+            id="motDePasse"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+        <p class="login-erreur" id="loginErreur" hidden>Mot de passe incorrect.</p>
+        <button type="submit" class="btn-login">Accéder</button>
+      </form>
+
+      <p class="login-note">
+        Cette page est réservée à l'administrateur du site.<br />
+        Mot de passe configurable dans le script ci-dessous.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ==============================
+       TABLEAU DE BORD ADMIN
+  =============================== -->
+  <div id="dashboard" hidden>
+
+    <!-- Header admin -->
+    <header class="admin-header">
+      <div class="admin-header__gauche">
+        <span class="admin-header__logo">⚡ Sefacile PC</span>
+        <span class="badge-prive">🔒 Privé</span>
+      </div>
+      <div class="admin-header__droite">
+        <span id="adminHeure" class="admin-heure"></span>
+        <button id="btnDeconnexion" class="btn-deconnexion">Déconnexion</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- Connexion API Netlify -->
+      <section class="section-api" id="sectionApi">
+        <h2 class="section-titre">🔑 Connexion à l'API Netlify</h2>
+        <p class="section-desc">
+          Renseigne ton <strong>token d'accès personnel Netlify</strong> et l'<strong>ID de ton site</strong>
+          pour charger les soumissions de formulaires.<br />
+          Ces informations ne sont stockées que pendant la session (non persistées).
+        </p>
+        <div class="api-form">
+          <div class="champ">
+            <label class="champ__label" for="netlifyToken">Token Netlify</label>
+            <input class="champ__input" type="password" id="netlifyToken" placeholder="nfp_xxxxxxxxxxxxxxxxxxxx" />
+          </div>
+          <div class="champ">
+            <label class="champ__label" for="siteId">ID du site Netlify</label>
+            <input class="champ__input" type="text" id="siteId" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
+          </div>
+          <button id="btnCharger" class="btn-charger">Charger les données</button>
+        </div>
+        <p class="api-aide">
+          Token : <a href="https://app.netlify.com/user/applications" target="_blank" rel="noopener">app.netlify.com/user/applications</a> →
+          Personal access tokens →  New access token<br />
+          ID du site : Site configuration → General → Site ID
+        </p>
+      </section>
+
+
+      <!-- Statistiques rapides -->
+      <section class="section-stats" id="sectionStats" hidden>
+        <h2 class="section-titre">📊 Statistiques rapides</h2>
+        <div class="stats-grille">
+          <div class="stat-carte">
+            <span class="stat-carte__valeur" id="statTotal">—</span>
+            <span class="stat-carte__label">Demandes totales</span>
+          </div>
+          <div class="stat-carte stat-carte--attente">
+            <span class="stat-carte__valeur" id="statNouveau">—</span>
+            <span class="stat-carte__label">Nouvelles (ce mois)</span>
+          </div>
+          <div class="stat-carte stat-carte--traite">
+            <span class="stat-carte__valeur" id="statTraite">—</span>
+            <span class="stat-carte__label">Traitées</span>
+          </div>
+          <div class="stat-carte stat-carte--devis">
+            <span class="stat-carte__valeur" id="statDevis">—</span>
+            <span class="stat-carte__label">Devis en attente</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Tableau : formulaire Contact -->
+      <section class="section-tableau" id="sectionContact" hidden>
+        <div class="tableau-header">
+          <h2 class="section-titre">📬 Demandes de contact</h2>
+          <span class="tableau-compte" id="compteContact">0 demande(s)</span>
+        </div>
+        <div class="tableau-wrap">
+          <table class="tableau" id="tableauContact">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Type projet</th>
+                <th>Budget</th>
+                <th>Message</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody id="corpsContact">
+              <tr><td colspan="8" class="tableau-vide">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <!-- Tableau : formulaire Devis -->
+      <section class="section-tableau" id="sectionDevis" hidden>
+        <div class="tableau-header">
+          <h2 class="section-titre">📋 Demandes de devis</h2>
+          <span class="tableau-compte" id="compteDevis">0 demande(s)</span>
+        </div>
+        <div class="tableau-wrap">
+          <table class="tableau" id="tableauDevis">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Ville</th>
+                <th>Prestation</th>
+                <th>Usage / Budget</th>
+                <th>Message</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody id="corpsDevis">
+              <tr><td colspan="9" class="tableau-vide">Chargement…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Message erreur API -->
+      <div id="erreurApi" class="erreur-api" hidden>
+        <span>⚠️</span>
+        <span id="erreurApiMessage">Impossible de charger les données.</span>
+      </div>
+
+    </main>
+  </div>
+
+
+  <script>
+    /* ============================================
+       MOT DE PASSE ADMIN
+       Changer la valeur ci-dessous si besoin.
+       Pour une vraie sécurité, activer le
+       Password Protection Netlify en plus.
+    ============================================ */
+    const MOT_DE_PASSE_ADMIN = "sefacile2024";
+
+    /* ============================================
+       STATUTS (stockés localement par soumission ID)
+    ============================================ */
+    const CLE_STATUTS = "admin_statuts";
+
+    function lireStatuts(): Record<string, string> {
+      try { return JSON.parse(localStorage.getItem(CLE_STATUTS) ?? "{}"); }
+      catch { return {}; }
+    }
+
+    function sauvegarderStatut(id: string, statut: string) {
+      const statuts = lireStatuts();
+      statuts[id] = statut;
+      localStorage.setItem(CLE_STATUTS, JSON.stringify(statuts));
+    }
+
+    /* ============================================
+       CONNEXION
+    ============================================ */
+    const ecranConnexion = document.getElementById("ecranConnexion")!;
+    const dashboard = document.getElementById("dashboard")!;
+    const formLogin = document.getElementById("formLogin") as HTMLFormElement;
+    const loginErreur = document.getElementById("loginErreur")!;
+
+    /* Vérifie si déjà connecté en session */
+    if (sessionStorage.getItem("admin_ok") === "1") {
+      ecranConnexion.hidden = true;
+      dashboard.hidden = false;
+      demarrerHeure();
+    }
+
+    formLogin.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const saisi = (document.getElementById("motDePasse") as HTMLInputElement).value;
+      if (saisi === MOT_DE_PASSE_ADMIN) {
+        sessionStorage.setItem("admin_ok", "1");
+        ecranConnexion.hidden = true;
+        dashboard.hidden = false;
+        loginErreur.hidden = true;
+        demarrerHeure();
+      } else {
+        loginErreur.hidden = false;
+        (document.getElementById("motDePasse") as HTMLInputElement).value = "";
+      }
+    });
+
+    document.getElementById("btnDeconnexion")?.addEventListener("click", () => {
+      sessionStorage.removeItem("admin_ok");
+      window.location.reload();
+    });
+
+    /* ============================================
+       HORLOGE
+    ============================================ */
+    function demarrerHeure() {
+      const el = document.getElementById("adminHeure")!;
+      const maj = () => {
+        const now = new Date();
+        el.textContent = now.toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" });
+      };
+      maj();
+      setInterval(maj, 30000);
+    }
+
+    /* ============================================
+       CHARGEMENT API NETLIFY
+    ============================================ */
+    document.getElementById("btnCharger")?.addEventListener("click", chargerDonnees);
+
+    async function chargerDonnees() {
+      const token  = (document.getElementById("netlifyToken") as HTMLInputElement).value.trim();
+      const siteId = (document.getElementById("siteId") as HTMLInputElement).value.trim();
+      const erreurEl = document.getElementById("erreurApi")!;
+      erreurEl.hidden = true;
+
+      if (!token || !siteId) {
+        afficherErreur("Renseigne le token et l'ID du site.");
+        return;
+      }
+
+      const btnCharger = document.getElementById("btnCharger") as HTMLButtonElement;
+      btnCharger.textContent = "Chargement…";
+      btnCharger.disabled = true;
+
+      /* Sauvegarder en session (pas localStorage) */
+      sessionStorage.setItem("netlify_token", token);
+      sessionStorage.setItem("netlify_site_id", siteId);
+
+      try {
+        /* Récupère la liste des formulaires */
+        const resFormes = await fetch(
+          `https://api.netlify.com/api/v1/sites/${siteId}/forms`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (!resFormes.ok) {
+          afficherErreur(`Erreur API Netlify (${resFormes.status}) — vérifie ton token et l'ID du site.`);
+          return;
+        }
+
+        const formes = await resFormes.json() as Array<{ id: string; name: string }>;
+
+        const formContact   = formes.find(f => f.name === "contact");
+        const formDevis     = formes.find(f => f.name === "devis");
+
+        const [subContact, subDevis] = await Promise.all([
+          formContact  ? fetchSoumissions(formContact.id,  token) : Promise.resolve([]),
+          formDevis    ? fetchSoumissions(formDevis.id,    token) : Promise.resolve([]),
+        ]);
+
+        afficherContact(subContact);
+        afficherDevis(subDevis);
+        afficherStats(subContact, subDevis);
+
+        /* Afficher les sections */
+        document.getElementById("sectionStats")!.hidden   = false;
+        document.getElementById("sectionContact")!.hidden = false;
+        document.getElementById("sectionDevis")!.hidden   = false;
+        document.getElementById("sectionApi")!.querySelector(".api-form")?.setAttribute("style", "display:none");
+
+      } catch (err) {
+        afficherErreur("Erreur réseau. Vérifie ta connexion.");
+        console.error(err);
+      } finally {
+        btnCharger.textContent = "Recharger";
+        btnCharger.disabled = false;
+      }
+    }
+
+    async function fetchSoumissions(formId: string, token: string) {
+      const res = await fetch(
+        `https://api.netlify.com/api/v1/forms/${formId}/submissions?per_page=100`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      if (!res.ok) return [];
+      return res.json();
+    }
+
+    /* ============================================
+       AFFICHAGE CONTACT
+    ============================================ */
+    function afficherContact(subs: any[]) {
+      const tbody = document.getElementById("corpsContact")!;
+      document.getElementById("compteContact")!.textContent = `${subs.length} demande(s)`;
+      const statuts = lireStatuts();
+
+      if (subs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="tableau-vide">Aucune soumission</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = subs.map(s => {
+        const d = s.data ?? {};
+        const statut = statuts[s.id] ?? "nouveau";
+        const date = new Date(s.created_at).toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" });
+        return `<tr>
+          <td class="td-date">${date}</td>
+          <td>${esc(d.prenom ?? "")} ${esc(d.nom ?? "")}</td>
+          <td><a href="mailto:${esc(d.email ?? "")}">${esc(d.email ?? "—")}</a></td>
+          <td>${esc(d.telephone ?? "—")}</td>
+          <td>${esc(d.type_projet ?? "—")}</td>
+          <td>${esc(d.budget ?? "—")}</td>
+          <td class="td-message" title="${esc(d.message ?? "")}">${tronquer(d.message ?? "—")}</td>
+          <td>${selectStatut(s.id, statut)}</td>
+        </tr>`;
+      }).join("");
+
+      ecouterStatuts();
+    }
+
+    /* ============================================
+       AFFICHAGE DEVIS
+    ============================================ */
+    function afficherDevis(subs: any[]) {
+      const tbody = document.getElementById("corpsDevis")!;
+      document.getElementById("compteDevis")!.textContent = `${subs.length} demande(s)`;
+      const statuts = lireStatuts();
+
+      if (subs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" class="tableau-vide">Aucune soumission</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = subs.map(s => {
+        const d = s.data ?? {};
+        const statut = statuts[s.id] ?? "nouveau";
+        const date = new Date(s.created_at).toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" });
+        const usageBudget = [d.usage, d.budget].filter(Boolean).join(" / ") || "—";
+        const message = d.message || d.message_entretien || "—";
+        return `<tr>
+          <td class="td-date">${date}</td>
+          <td>${esc(d.prenom ?? "")} ${esc(d.nom ?? "")}</td>
+          <td><a href="mailto:${esc(d.email ?? "")}">${esc(d.email ?? "—")}</a></td>
+          <td>${esc(d.telephone ?? "—")}</td>
+          <td>${esc(d.ville ?? "—")}</td>
+          <td><strong>${esc(d.prestation ?? "—")}</strong></td>
+          <td>${esc(usageBudget)}</td>
+          <td class="td-message" title="${esc(message)}">${tronquer(message)}</td>
+          <td>${selectStatut(s.id, statut)}</td>
+        </tr>`;
+      }).join("");
+
+      ecouterStatuts();
+    }
+
+    /* ============================================
+       STATISTIQUES
+    ============================================ */
+    function afficherStats(contact: any[], devis: any[]) {
+      const statuts = lireStatuts();
+      const toutes = [...contact, ...devis];
+      const maintenant = new Date();
+      const moisEnCours = maintenant.getMonth();
+      const anneeEnCours = maintenant.getFullYear();
+
+      const ceMois = toutes.filter(s => {
+        const d = new Date(s.created_at);
+        return d.getMonth() === moisEnCours && d.getFullYear() === anneeEnCours;
+      });
+
+      const traites = toutes.filter(s => (statuts[s.id] ?? "nouveau") === "traite");
+      const devisAttente = devis.filter(s => (statuts[s.id] ?? "nouveau") === "nouveau");
+
+      document.getElementById("statTotal")!.textContent   = String(toutes.length);
+      document.getElementById("statNouveau")!.textContent = String(ceMois.length);
+      document.getElementById("statTraite")!.textContent  = String(traites.length);
+      document.getElementById("statDevis")!.textContent   = String(devisAttente.length);
+    }
+
+    /* ============================================
+       HELPERS
+    ============================================ */
+    function esc(s: string): string {
+      return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    function tronquer(s: string, max = 60): string {
+      return s.length > max ? esc(s.slice(0, max)) + "…" : esc(s);
+    }
+
+    function selectStatut(id: string, courant: string): string {
+      const options = [
+        { val: "nouveau",   label: "🔵 Nouveau" },
+        { val: "en_cours",  label: "🟡 En cours" },
+        { val: "traite",    label: "🟢 Traité" },
+        { val: "refuse",    label: "🔴 Refusé" },
+      ];
+      return `<select class="select-statut" data-id="${id}">
+        ${options.map(o => `<option value="${o.val}"${courant === o.val ? " selected" : ""}>${o.label}</option>`).join("")}
+      </select>`;
+    }
+
+    function ecouterStatuts() {
+      document.querySelectorAll<HTMLSelectElement>(".select-statut").forEach(sel => {
+        sel.addEventListener("change", () => {
+          sauvegarderStatut(sel.dataset.id!, sel.value);
+          /* Recalcule les stats après changement */
+          const token  = sessionStorage.getItem("netlify_token") ?? "";
+          const siteId = sessionStorage.getItem("netlify_site_id") ?? "";
+          if (token && siteId) chargerDonnees();
+        });
+      });
+    }
+
+    function afficherErreur(msg: string) {
+      const el = document.getElementById("erreurApi")!;
+      document.getElementById("erreurApiMessage")!.textContent = msg;
+      el.hidden = false;
+    }
+
+    /* Recharge auto si token déjà en session */
+    window.addEventListener("load", () => {
+      if (sessionStorage.getItem("admin_ok") === "1") {
+        const token  = sessionStorage.getItem("netlify_token");
+        const siteId = sessionStorage.getItem("netlify_site_id");
+        if (token && siteId) {
+          (document.getElementById("netlifyToken") as HTMLInputElement).value = token;
+          (document.getElementById("siteId") as HTMLInputElement).value = siteId;
+          chargerDonnees();
+        }
+      }
+    });
+  </script>
+
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: #f4f5f7;
+      color: #1a1a2e;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    a { color: #0070f3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* =====================
+       ÉCRAN CONNEXION
+    ===================== */
+    .ecran-connexion {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      padding: 1.5rem;
+    }
+
+    .login-carte {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .login-carte__header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-carte__icone { font-size: 2.5rem; display: block; margin-bottom: 0.75rem; }
+
+    .login-carte__titre {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .login-carte__sous-titre {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .login-erreur {
+      color: #dc2626;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-login {
+      width: 100%;
+      background: #0dd3b2;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      padding: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-login:hover { background: #0bb89b; }
+
+    .login-note {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: #999;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* =====================
+       HEADER ADMIN
+    ===================== */
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1a1a2e;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .admin-header__gauche,
+    .admin-header__droite {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .admin-header__logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .badge-prive {
+      background: #dc2626;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .admin-heure {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .btn-deconnexion {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #ccc;
+      font-family: inherit;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-deconnexion:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    /* =====================
+       CONTENU PRINCIPAL
+    ===================== */
+    .admin-main {
+      max-width: 1400px;
+      margin-inline: auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .section-titre {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+    }
+
+    .section-desc {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    /* =====================
+       SECTION API
+    ===================== */
+    .section-api {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .api-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 0.75rem;
+    }
+
+    .api-aide {
+      font-size: 0.75rem;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .btn-charger {
+      background: #0dd3b2;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      padding: 0.65rem 1.25rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-charger:hover:not(:disabled) { background: #0bb89b; }
+    .btn-charger:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Champs formulaire partagés */
+    .champ { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .champ__label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .champ__input {
+      border: 1px solid #d1d5db;
+      border-radius: 5px;
+      padding: 0.6rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: #1a1a2e;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .champ__input:focus {
+      border-color: #0dd3b2;
+      box-shadow: 0 0 0 2px rgba(13, 211, 178, 0.15);
+    }
+
+    /* =====================
+       STATISTIQUES
+    ===================== */
+    .section-stats {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .stats-grille {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-carte {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-carte--attente { border-left: 3px solid #f59e0b; }
+    .stat-carte--traite  { border-left: 3px solid #10b981; }
+    .stat-carte--devis   { border-left: 3px solid #6366f1; }
+
+    .stat-carte__valeur {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-carte__label {
+      font-size: 0.78rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* =====================
+       TABLEAUX
+    ===================== */
+    .section-tableau {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .tableau-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem 0;
+    }
+
+    .tableau-compte {
+      font-size: 0.8rem;
+      color: #888;
+      background: #f1f5f9;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    .tableau-wrap {
+      overflow-x: auto;
+      padding: 1rem 0 0;
+    }
+
+    .tableau {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .tableau thead th {
+      background: #f8fafc;
+      padding: 0.6rem 0.85rem;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #64748b;
+      border-bottom: 1px solid #e2e8f0;
+      white-space: nowrap;
+    }
+
+    .tableau tbody td {
+      padding: 0.75rem 0.85rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+      color: #374151;
+    }
+
+    .tableau tbody tr:hover td {
+      background: #fafbfc;
+    }
+
+    .tableau tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .td-date { white-space: nowrap; color: #888; font-size: 0.75rem; }
+
+    .td-message {
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #64748b;
+    }
+
+    .tableau-vide {
+      text-align: center;
+      padding: 2rem !important;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .select-statut {
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      padding: 0.3rem 0.5rem;
+      font-family: inherit;
+      font-size: 0.78rem;
+      background: #fff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .select-statut:focus {
+      border-color: #0dd3b2;
+    }
+
+    /* =====================
+       ERREUR API
+    ===================== */
+    .erreur-api {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      color: #dc2626;
+      font-size: 0.875rem;
+    }
+
+    .erreur-api[hidden] { display: none; }
+
+    /* =====================
+       Responsive
+    ===================== */
+    @media (min-width: 640px) {
+      .stats-grille { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .api-form { grid-template-columns: 1fr; }
+      .admin-header { flex-wrap: wrap; gap: 0.5rem; }
+    }
+  </style>
+
+</body>
+</html>
