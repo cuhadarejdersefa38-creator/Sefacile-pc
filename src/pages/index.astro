@@ -7,6 +7,10 @@ import Layout from "../layouts/Layout.astro";
       <div class="conteneur hero__inner">
 
         <div class="hero__contenu">
+          <svg class="hero__logo" viewBox="140 245 990 725" width="180" height="132" role="img" aria-labelledby="logo-titre" xmlns="http://www.w3.org/2000/svg">
+            <title id="logo-titre">Sefacile PC — logo S</title>
+            <path fill="currentColor" d="M1108 262H570C433 262 348 334 301 467C276 537 265 583 305 628C329 654 364 670 405 677L815 518H534C494 518 477 501 485 474C494 443 514 424 551 424H933Z M878 524L462 687H770C809 687 827 705 813 739C802 766 781 778 748 778H357L155 954H762C893 954 973 864 1008 747C1045 624 1000 547 878 524Z" />
+          </svg>
           <h1 class="hero__titre">
             Votre PC sur mesure
           </h1>
@@ -42,6 +46,7 @@ import Layout from "../layouts/Layout.astro";
 <style>
   .hero{display:flex;align-items:center;padding:5rem 0 2rem;background:#101214;color:#f5f5f5}
   .hero__inner{width:100%}
+  .hero__logo{display:block;width:clamp(130px,22vw,180px);height:auto;margin:0 auto 1.75rem;color:#40e0d0}
   .hero__titre{color:#40e0d0;font-size:clamp(2.2rem,6vw,4rem);line-height:1.1;margin-bottom:1.25rem;letter-spacing:-.02em}
   .hero__sous-titre{color:#b8b8b8;font-size:clamp(1rem,2vw,1.15rem);max-width:52ch;margin-bottom:2rem;line-height:1.7}
   .hero__contenu{max-width:780px;margin-inline:auto;text-align:center}
