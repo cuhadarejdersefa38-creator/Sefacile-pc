@@ -21,29 +21,29 @@
 # Anciennes adresses redirigées vers les sections de la page vitrine.
 [[redirects]]
   from = "/services"
-  to = "/#services"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/tarifs"
-  to = "/#tarifs"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/contact"
-  to = "/#contact"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/devis"
-  to = "/#contact"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/configurateur"
-  to = "/#contact"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/realisations"
-  to = "/#apropos"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/a-propos"
-  to = "/#apropos"
+  to = "/"
   status = 301
