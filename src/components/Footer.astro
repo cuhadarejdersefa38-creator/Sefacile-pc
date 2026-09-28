@@ -3,13 +3,7 @@
 
 const annee = new Date().getFullYear();
 
-const liens = [
-  { href: "/#accueil", label: "Accueil" },
-  { href: "/#services", label: "Services" },
-  { href: "/#tarifs", label: "Tarifs" },
-  { href: "/#contact", label: "Contact" },
-  { href: "/#apropos", label: "À propos" },
-];
+
 ---
 
 <footer class="footer">
@@ -31,18 +25,6 @@ const liens = [
         <br />et alentours (Isère - 38)
       </p>
     </div>
-
-    <!-- Colonne 2 : Liens rapides -->
-    <nav class="footer__bloc footer__liens" aria-label="Liens rapides">
-      <h3 class="footer__titre">Liens rapides</h3>
-      <ul>
-        {liens.map(({ href, label }) => (
-          <li>
-            <a href={href} class="footer__lien">{label}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
 
     <!-- Colonne 3 : Contact rapide -->
     <div class="footer__bloc footer__contact">
@@ -198,7 +180,7 @@ const liens = [
   ===================== */
   @media (min-width: 768px) {
     .footer__inner {
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
     }
   }
 </style>
