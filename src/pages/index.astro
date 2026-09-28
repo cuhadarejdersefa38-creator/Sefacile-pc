@@ -35,13 +35,12 @@ import Layout from "../layouts/Layout.astro";
           <li><span class="prestations__numero" aria-hidden="true">03</span><h3>Mises à jour système et BIOS</h3><p>Mise à jour du système d’exploitation et du BIOS de la carte mère.</p></li>
           <li><span class="prestations__numero" aria-hidden="true">04</span><h3>Test OCCT</h3><p>Test de stabilité du PC et contrôle des températures avec OCCT.</p></li>
         </ul>
-        <p class="prestations__mention">Composants et éventuelle licence du système d’exploitation non compris.</p>
       </div>
     </section>
   </main>
 </Layout>
 <style>
-  .hero{min-height:100svh;display:flex;align-items:center;padding:4rem 0;background:#101214;color:#f5f5f5}
+  .hero{display:flex;align-items:center;padding:5rem 0 2rem;background:#101214;color:#f5f5f5}
   .hero__inner{width:100%}
   .hero__titre{color:#40e0d0;font-size:clamp(2.2rem,6vw,4rem);line-height:1.1;margin-bottom:1.25rem;letter-spacing:-.02em}
   .hero__sous-titre{color:#b8b8b8;font-size:clamp(1rem,2vw,1.15rem);max-width:52ch;margin-bottom:2rem;line-height:1.7}
@@ -53,7 +52,7 @@ import Layout from "../layouts/Layout.astro";
   .hero__contact:hover{background:#78eadf}
   .hero__contact:focus-visible{outline:3px solid #f5f5f5;outline-offset:5px}
   @media(max-width:420px){.hero__tarif span{display:block;margin-top:.3rem}}
-  .prestations{padding:5rem 0 6rem;background:#101214;border-top:1px solid #ffffff14}
+  .prestations{padding:1.5rem 0 5rem;background:#101214}
   .prestations h2{text-align:center;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:2.5rem;letter-spacing:-.02em}
   .prestations h2 span,.prestations__numero{color:#40e0d0}
   .prestations__liste{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem}
@@ -61,7 +60,6 @@ import Layout from "../layouts/Layout.astro";
   .prestations__numero{display:block;font-weight:700;font-size:.85rem;margin-bottom:1.3rem}
   .prestations h3{font-size:1.1rem;line-height:1.35;margin-bottom:.75rem}
   .prestations__liste p{font-size:.95rem;color:#b8b8b8;line-height:1.65}
-  .prestations__mention{color:#b8b8b8;text-align:center;font-size:.85rem;margin-top:1.75rem}
   @media(max-width:900px){.prestations__liste{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:550px){.prestations{padding:3.5rem 0}.prestations__liste{grid-template-columns:1fr}}
+  @media(max-width:550px){.prestations{padding:1rem 0 3rem}.prestations__liste{grid-template-columns:1fr}}
 </style>
