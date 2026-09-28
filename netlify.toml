@@ -17,3 +17,33 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store, no-cache"
+
+# Anciennes adresses redirigées vers les sections de la page vitrine.
+[[redirects]]
+  from = "/services"
+  to = "/#services"
+  status = 301
+[[redirects]]
+  from = "/tarifs"
+  to = "/#tarifs"
+  status = 301
+[[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/devis"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/configurateur"
+  to = "/#contact"
+  status = 301
+[[redirects]]
+  from = "/realisations"
+  to = "/#apropos"
+  status = 301
+[[redirects]]
+  from = "/a-propos"
+  to = "/#apropos"
+  status = 301

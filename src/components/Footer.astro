@@ -4,12 +4,11 @@
 const annee = new Date().getFullYear();
 
 const liens = [
-  { href: "/",             label: "Accueil" },
-  { href: "/services",     label: "Services" },
-  { href: "/realisations", label: "Réalisations" },
-  { href: "/tarifs",       label: "Tarifs" },
-  { href: "/contact",      label: "Contact" },
-  { href: "/a-propos",     label: "À propos" },
+  { href: "/#accueil", label: "Accueil" },
+  { href: "/#services", label: "Services" },
+  { href: "/#tarifs", label: "Tarifs" },
+  { href: "/#contact", label: "Contact" },
+  { href: "/#apropos", label: "À propos" },
 ];
 ---
 
@@ -51,7 +50,7 @@ const liens = [
       <ul>
         <li>
           <!-- Bouton appel direct (important sur mobile) -->
-          <a href="tel:0474555657" class="footer__lien footer__tel">
+          <a href="tel:+33683500125" class="footer__lien footer__tel">
             <span aria-hidden="true">📞</span> 06 83 50 01 25
           </a>
         </li>
@@ -61,7 +60,7 @@ const liens = [
           </a>
         </li>
         <li>
-          <a href="/contact" class="btn-principal footer__btn-devis">
+          <a href="/#contact" class="btn-principal footer__btn-devis">
             Demander un devis
           </a>
         </li>

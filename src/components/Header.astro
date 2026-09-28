@@ -5,12 +5,11 @@
 const cheminActuel = Astro.url.pathname;
 
 const liens = [
-  { href: "/",               label: "Accueil" },
-  { href: "/services",       label: "Services" },
-  { href: "/configurateur",  label: "Configurateur" },
-  /* Réalisations masqué — page bientôt disponible */
-  { href: "/tarifs",         label: "Tarifs" },
-  { href: "/contact",        label: "Contact" },
+  { href: "/#accueil", label: "Accueil" },
+  { href: "/#services", label: "Services" },
+  { href: "/#tarifs", label: "Tarifs" },
+  { href: "/#apropos", label: "À propos" },
+  { href: "/#contact", label: "Contact" },
 ];
 ---
 
@@ -60,7 +59,7 @@ const liens = [
       </ul>
 
       <!-- CTA visible dans le menu sur mobile -->
-      <a href="/devis" class="btn-principal header__cta">
+      <a href="/#contact" class="btn-principal header__cta">
         Devis gratuit
       </a>
     </nav>

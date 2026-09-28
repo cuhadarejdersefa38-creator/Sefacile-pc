@@ -16,7 +16,7 @@ import Footer from "../components/Footer.astro";
     <!-- ================================
          1. HERO
     ================================= -->
-    <section class="hero" aria-label="Introduction">
+    <section id="accueil" class="hero" aria-label="Introduction">
       <div class="conteneur hero__inner">
 
         <div class="hero__contenu">
@@ -37,10 +37,10 @@ import Footer from "../components/Footer.astro";
           </p>
 
           <div class="hero__boutons">
-            <a href="/contact" class="btn-principal">
+            <a href="/#contact" class="btn-principal">
               Devis gratuit
             </a>
-            <a href="/realisations" class="btn-secondaire">
+            <a href="/#apropos" class="btn-secondaire">
               Voir les réalisations
             </a>
           </div>
@@ -68,7 +68,7 @@ import Footer from "../components/Footer.astro";
     <!-- ================================
          2. SERVICES
     ================================= -->
-    <section class="services" aria-labelledby="titreServices">
+    <section id="services" class="services" aria-labelledby="titreServices">
       <div class="conteneur">
 
         <div class="section__entete">
@@ -90,7 +90,7 @@ import Footer from "../components/Footer.astro";
               de 800 € à 2 500 €. Je sélectionne tes composants, tu les commandes,
               je monte et teste. FPS maximum, câblage propre.
             </p>
-            <a href="/services#gaming" class="carte__lien">
+            <a href="/#services" class="carte__lien">
               En savoir plus <span aria-hidden="true">→</span>
             </a>
           </article>
@@ -103,7 +103,7 @@ import Footer from "../components/Footer.astro";
               Blender, Cinema 4D, AutoCAD — stations de travail puissantes
               pour les créatifs et professionnels 3D, de 1 500 € à 5 000 €+.
             </p>
-            <a href="/services#workstation" class="carte__lien">
+            <a href="/#services" class="carte__lien">
               En savoir plus <span aria-hidden="true">→</span>
             </a>
           </article>
@@ -116,7 +116,7 @@ import Footer from "../components/Footer.astro";
               Pas sûr de ce dont tu as besoin ? Je te guide gratuitement
               pour choisir la config idéale et acheter tes pièces au meilleur prix.
             </p>
-            <a href="/contact" class="carte__lien">
+            <a href="/#contact" class="carte__lien">
               Demander un conseil <span aria-hidden="true">→</span>
             </a>
           </article>
@@ -129,7 +129,7 @@ import Footer from "../components/Footer.astro";
     <!-- ================================
          3. COMMENT ÇA MARCHE
     ================================= -->
-    <section class="process" aria-labelledby="titreProcess">
+    <section id="methode" class="process" aria-labelledby="titreProcess">
       <div class="conteneur">
 
         <div class="section__entete">
@@ -195,8 +195,7 @@ import Footer from "../components/Footer.astro";
             <div class="point__icone" aria-hidden="true">📍</div>
             <h3 class="point__titre">Basé en Isère</h3>
             <p class="point__texte">
-              Intervention à domicile ou remise en main propre à Grenoble,
-              Voiron, Bourgoin-Jallieu et alentours.
+              Atelier à Corbelin ; modalités de remise à convenir ensemble.
             </p>
           </li>
 
@@ -204,7 +203,7 @@ import Footer from "../components/Footer.astro";
             <div class="point__icone" aria-hidden="true">🛡️</div>
             <h3 class="point__titre">Montage soigné et testé</h3>
             <p class="point__texte">
-              Câble management propre, tests de stabilité 24 h.
+              Câble management propre, tests de stabilité.
               Tu achètes tes composants en direct — garantie constructeur à ton nom.
             </p>
           </li>
@@ -240,7 +239,7 @@ import Footer from "../components/Footer.astro";
 
         <div class="section__entete">
           <h2 class="section__titre" id="titreAvis">Ce que disent nos clients</h2>
-          <p class="section__sous-titre">Les avis sont vérifiés par Google</p>
+          <p class="section__sous-titre">Partagez votre expérience sur Google</p>
         </div>
 
         <div class="avis__contenu">
@@ -298,11 +297,11 @@ import Footer from "../components/Footer.astro";
             Prêt à construire votre PC idéal&nbsp;?
           </h2>
           <p class="cta-final__sous-titre">
-            Décrivez-moi votre projet — je vous réponds sous 24 h avec un devis personnalisé, sans engagement.
+            Décrivez-moi votre projet — je vous réponds avec un devis personnalisé, sans engagement.
           </p>
         </div>
         <div class="cta-final__action">
-          <a href="/contact" class="btn-principal cta-final__btn">
+          <a href="/#contact" class="btn-principal cta-final__btn">
             Demander un devis gratuit
           </a>
           <!-- Appel direct sur mobile -->
@@ -313,6 +312,10 @@ import Footer from "../components/Footer.astro";
       </div>
     </section>
 
+
+    <section id="tarifs" class="landing-extra" aria-labelledby="titreTarifs"><div class="conteneur"><h2 id="titreTarifs">Tarifs des prestations</h2><div class="extra-grid"><article><h3>Montage PC sur mesure</h3><strong>150 €</strong><p>Montage, câblage, installation du système et des pilotes, tests de stabilité. Composants achetés séparément par le client ; licence Windows à fournir si nécessaire.</p></article><article><h3>Entretien PC</h3><strong>À partir de 30 €</strong><p>Dépoussiérage et vérification générale. Intervention exacte et tarif confirmés par devis.</p></article></div></div></section>
+    <section id="apropos" class="landing-extra landing-extra--dark" aria-labelledby="titreApropos"><div class="conteneur"><h2 id="titreApropos">À propos de Sefacile PC</h2><p>Basé à Corbelin en Isère, je vous accompagne dans le choix et l’assemblage d'un ordinateur adapté à vos usages et à votre budget. Vous gardez la main sur l'achat de vos composants. Contactez-moi pour convenir du dépôt et de la remise du PC.</p></div></section>
+    <section id="contact" class="landing-extra" aria-labelledby="titreContact"><div class="conteneur"><h2 id="titreContact">Parlons de votre projet</h2><p>Décrivez votre besoin et les composants dont vous disposez déjà. Vous pouvez aussi appeler le <a href="tel:+33683500125">06 83 50 01 25</a> ou écrire à <a href="mailto:contact.sefacile@gmail.com">contact.sefacile@gmail.com</a>.</p><form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?envoye=1#contact"><input type="hidden" name="form-name" value="contact" /><p hidden><label>Ne pas remplir : <input name="bot-field" /></label></p><p id="confirmation" hidden>Votre message a bien été envoyé.</p><label>Votre nom <input name="nom" autocomplete="name" required /></label><label>Votre adresse e-mail <input type="email" name="email" autocomplete="email" required /></label><label>Votre projet <select name="projet" required><option value="">Choisir</option><option>PC Gaming</option><option>Station de travail 3D</option><option>Entretien</option><option>Autre</option></select></label><label>Votre message <textarea name="message" rows="5" required></textarea></label><button type="submit" class="btn-principal">Envoyer ma demande</button></form></div></section>
   </main>
 
   <Footer />
@@ -871,3 +874,6 @@ import Footer from "../components/Footer.astro";
     }
   }
 </style>
+
+<script>if (new URLSearchParams(location.search).has('envoye')) { const el = document.getElementById('confirmation'); if (el) el.hidden = false; }</script>
+<style> :global(html){scroll-padding-top:100px} .landing-extra{padding:5rem 0;background:var(--couleur-surface)} .landing-extra--dark{background:var(--couleur-fond)} .landing-extra h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:1rem} .landing-extra p{max-width:75ch;color:var(--couleur-texte-secondaire);margin-bottom:1.5rem}.landing-extra a{color:var(--couleur-rouge)}.extra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}.extra-grid article{border:1px solid var(--couleur-bordure);border-radius:12px;padding:2rem;background:var(--couleur-surface-2)}.extra-grid strong{display:block;color:var(--couleur-rouge);font-size:1.7rem;margin:1rem 0}.landing-extra form{max-width:680px;display:grid;gap:1rem}.landing-extra label{display:grid;gap:.4rem}.landing-extra input,.landing-extra select,.landing-extra textarea{width:100%;padding:.8rem;background:var(--couleur-surface-2);color:white;border:1px solid #63716e;border-radius:6px;font:inherit}.landing-extra form button{justify-self:start}.landing-extra #confirmation{color:var(--couleur-rouge)}@media(max-width:650px){.extra-grid{grid-template-columns:1fr}} </style>
