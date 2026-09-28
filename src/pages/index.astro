@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="hero__contenu">
           <!-- Badge localisation -->
           <span class="hero__badge">
-            <span aria-hidden="true">📍</span> Isère (38) — Grenoble · Voiron · Bourgoin
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> Isère (38) — Grenoble · Voiron · Bourgoin
           </span>
 
           <h1 class="hero__titre">
@@ -32,124 +32,10 @@ import Layout from "../layouts/Layout.astro";
   </main>
 </Layout>
 <style>
-  .accent { color: var(--couleur-rouge); }
-  .hero {
-    position: relative;
-    padding: 4rem 0 6rem;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(13, 211, 178, 0.08) 0%, transparent 70%),
-      var(--couleur-fond);
-    overflow: hidden;
-  }
-
-  .hero__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  /* Badge */
-  .hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--couleur-rouge);
-    background-color: rgba(13, 211, 178, 0.1);
-    border: 1px solid rgba(13, 211, 178, 0.25);
-    border-radius: 999px;
-    padding: 0.35rem 0.9rem;
-    margin-bottom: 1rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  /* Titre principal */
-  .hero__titre {
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    line-height: 1.1;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
-  }
-
-  .hero__sous-titre {
-    color: var(--couleur-texte-secondaire);
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    max-width: 52ch;
-    margin-bottom: 2rem;
-    line-height: 1.7;
-  }
-
-  .hero__boutons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  /* Illustration PC */
-  .hero__visuel {
-    flex-shrink: 0;
-  }
-
-  .hero__pc {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .pc__ecran {
-    width: 180px;
-    height: 120px;
-    background: var(--couleur-surface-2);
-    border: 2px solid var(--couleur-bordure);
-    border-radius: 8px;
-    display: grid;
-    place-items: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--ombre-rouge);
-  }
-
-  .pc__lueur {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(13, 211, 178, 0.15), transparent 70%);
-    animation: pulse 3s ease-in-out infinite;
-  }
-
-  .pc__logo {
-    font-size: 3rem;
-    position: relative;
-    z-index: 1;
-  }
-
-  .pc__pied {
-    width: 40px;
-    height: 8px;
-    background: var(--couleur-surface-2);
-    border: 2px solid var(--couleur-bordure);
-    border-top: none;
-  }
-
-  .pc__base {
-    width: 100px;
-    height: 6px;
-    background: var(--couleur-surface-2);
-    border: 2px solid var(--couleur-bordure);
-    border-radius: 3px;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50%       { opacity: 1; }
-  }
-
-
-  .hero { min-height:100svh;display:flex;align-items:center;padding:4rem 0; }
-  .hero__inner { width:100%; }
-  @media(min-width:768px){.hero__inner{flex-direction:row;justify-content:space-between;gap:3rem}.hero__contenu{flex:1}.pc__ecran{width:260px;height:175px}}
-  @media(prefers-reduced-motion:reduce){.pc__lueur{animation:none}}
+  .hero{min-height:100svh;display:flex;align-items:center;padding:4rem 0;background:#101214;color:#f5f5f5}
+  .hero__inner{width:100%}
+  .hero__badge{display:inline-flex;align-items:center;gap:.5rem;color:#40e0d0;border:1px solid #40e0d066;border-radius:999px;padding:.35rem .9rem;margin-bottom:1rem;font-size:.8rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
+  .hero__titre{color:#40e0d0;font-size:clamp(2.2rem,6vw,4rem);line-height:1.1;margin-bottom:1.25rem;letter-spacing:-.02em}
+  .hero__sous-titre{color:#b8b8b8;font-size:clamp(1rem,2vw,1.15rem);max-width:52ch;margin-bottom:2rem;line-height:1.7}
+  .hero__contenu{max-width:100%}
 </style>
